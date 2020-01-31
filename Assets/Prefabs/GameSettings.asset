@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b0e01e079d38ba4896fb32e73f5b6e4, type: 3}
   m_Name: GameSettings
   m_EditorClassIdentifier: 
-  playerHorSpeed: 2
+  playerHorSpeed: 8
   playerVerSpeed: 2
