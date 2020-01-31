@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     bool bIsInsideStairCollider = false;
 
     public Animator playerAnimator;
+    public Animator weaponAnimator;
 
     void Update()
     {
@@ -41,11 +42,22 @@ public class PlayerController : MonoBehaviour
         }
 
         playerAnimator.SetBool("Walking", isWalking);
+        
 
         transform.Translate(new Vector2(Time.deltaTime * velocidadEjeX * gameSettings.playerHorSpeed,
                             Time.deltaTime * velocidadEjeY * gameSettings.playerVerSpeed));
         // m_rigidBody.velocity = new Vector2(m_rigidBody.velocity.x, gameSettings.playerVerSpeed * velocidadEjeY);
         // m_rigidBody.velocity = new Vector2(velocidadEjeX * gameSettings.playerHorSpeed, m_rigidBody.velocity.y);
+
+
+        if (Input.GetKey(KeyCode.Q))
+        {
+            weaponAnimator.SetTrigger("Shoot");
+        }
+        else if (Input.GetKey(KeyCode.E))
+        {
+            weaponAnimator.SetTrigger("Cut");
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collider2D)
