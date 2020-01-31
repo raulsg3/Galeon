@@ -101,7 +101,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 5224818089109169919, guid: 2eee9d81028380341b7d32c571c8fc02,
+  m_Sprite: {fileID: -3228826596810312661, guid: 2eee9d81028380341b7d32c571c8fc02,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -210,7 +210,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameSettings: {fileID: 11400000, guid: d8f3b228e622e0044b875a77b80446d9, type: 2}
-  m_rigidBody: {fileID: 0}
+  m_rigidBody: {fileID: 396529499}
+  playerAnimator: {fileID: 4590724379623750185}
 --- !u!50 &396529499
 Rigidbody2D:
   serializedVersion: 4

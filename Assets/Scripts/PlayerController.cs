@@ -8,31 +8,40 @@ public class PlayerController : MonoBehaviour
     public Rigidbody2D m_rigidBody;
     bool bIsInsideStairCollider = false;
 
+    public Animator playerAnimator;
+
     void Update()
     {
         float velocidadEjeX = 0 ; // -1 izq, 1 der, 0 quieto
         float velocidadEjeY = 0 ; // 
+        bool isWalking = false;
         if (Input.GetKey(KeyCode.D))
         {
             //Velocidad positiva
             velocidadEjeX = 1;
+            isWalking = true;
         }
         else if (Input.GetKey(KeyCode.A))
         {
             //Velocidad negativa
             velocidadEjeX = -1;
+            isWalking = true;
         }
 
         if(Input.GetKey(KeyCode.S) && bIsInsideStairCollider)
         {
             velocidadEjeY = -1;
+            isWalking = true;
         }
         
         if(Input.GetKey(KeyCode.W) && bIsInsideStairCollider)
         {
             velocidadEjeY = 1;
+            isWalking = true;
         }
-        
+
+        playerAnimator.SetBool("Walking", isWalking);
+
         transform.Translate(new Vector2(Time.deltaTime * velocidadEjeX * gameSettings.playerHorSpeed,
                             Time.deltaTime * velocidadEjeY * gameSettings.playerVerSpeed));
         // m_rigidBody.velocity = new Vector2(m_rigidBody.velocity.x, gameSettings.playerVerSpeed * velocidadEjeY);
