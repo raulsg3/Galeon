@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: AtlasUIRectangles
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 395cda4495569486999109b9cdd94864, type: 3}
+    totalSpriteSurfaceArea: 641935
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: e0541030df83b4e8a97d9670ee6e74ee, type: 3}
+  - {fileID: 21300000, guid: bf010f23686e44aadb27aaa426d4a803, type: 3}
+  - {fileID: 21300000, guid: 9e6c81d464906439280b099ebbb0b5f2, type: 3}
+  - {fileID: 21300000, guid: 4e76aeb97172347c0b826b25a446b128, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - RectangleSmallRound
+  - bt_Yellow
+  - RectangleSmall
+  - RectangleLarge
+  m_Tag: AtlasUIRectangles
+  m_IsVariant: 0
