@@ -8,6 +8,7 @@ TextureImporter:
   - first:
       213: 5224818089109169919
     second: pirates.v1_1
+<<<<<<< HEAD
   - first:
       213: -2503110670891625154
     second: pirates.v1_2
@@ -500,6 +501,8 @@ TextureImporter:
   - first:
       213: -4036473782022691103
     second: pirates.v1_165
+=======
+>>>>>>> 8a3350cbd59a94037e526e0f82e50c1a38dfc80a
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -592,7 +595,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -608,9 +611,15 @@ TextureImporter:
       name: pirates.v1_1
       rect:
         serializedVersion: 2
+<<<<<<< HEAD
         x: 32
         y: 240
         width: 16
+=======
+        x: 18
+        y: 176
+        width: 11
+>>>>>>> 8a3350cbd59a94037e526e0f82e50c1a38dfc80a
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -619,12 +628,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
+<<<<<<< HEAD
       spriteID: cfa989dc20eb8384da5d95bfe04fc3ac
+=======
+      spriteID: 79a488000f0eb71419a19baca65f0ef8
+>>>>>>> 8a3350cbd59a94037e526e0f82e50c1a38dfc80a
       internalID: 5224818089109169919
       vertices: []
       indices: 
       edges: []
       weights: []
+<<<<<<< HEAD
     - serializedVersion: 2
       name: pirates.v1_2
       rect:
@@ -4069,6 +4083,8 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+=======
+>>>>>>> 8a3350cbd59a94037e526e0f82e50c1a38dfc80a
     outline: []
     physicsShape: []
     bones: []
