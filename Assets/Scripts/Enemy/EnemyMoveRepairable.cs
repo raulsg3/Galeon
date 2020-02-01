@@ -33,6 +33,11 @@ public class EnemyMoveRepairable : MonoBehaviour
 
             transform.Translate(directionVector * speed * Time.deltaTime);
             enemyWalkAnimator.SetBool("Walking", true);
+             if(directionVector.x > 0){
+                transform.localScale = new Vector3(-1,1, 1);
+            }else if (directionVector.x < 0) {
+                transform.localScale = new Vector3(1, 1, 1);
+            }
         }
 
         if (destroying && target != null)

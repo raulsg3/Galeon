@@ -143,3 +143,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f332aebf7b3f4584394c8d40af1b533c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnHitParticles: {fileID: 100000, guid: 5e4590a9ec1bfc249bf31ff81d5ea235, type: 3}

@@ -4370,7 +4370,7 @@ PrefabInstance:
     - target: {fileID: 6203228582035999579, guid: 4c4cee310ae939240b9f9e4ed5e1ced3,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8610935723988010983, guid: 4c4cee310ae939240b9f9e4ed5e1ced3,
         type: 3}
@@ -5356,7 +5356,7 @@ PrefabInstance:
     - target: {fileID: -8924104135309644901, guid: ee44f1248bbb1e54bbb32e32b1acd84b,
         type: 3}
       propertyPath: waitingTime
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 141404, guid: ee44f1248bbb1e54bbb32e32b1acd84b, type: 3}
       propertyPath: m_Name

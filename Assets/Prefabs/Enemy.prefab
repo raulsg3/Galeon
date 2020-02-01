@@ -200,8 +200,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c379fad36a70b246824c93a90dbf9f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1
   enemyScore: 100
+  dieParticles: {fileID: 100000, guid: 3b9bac949dbca6048ac36631722dce4b, type: 3}
 --- !u!61 &392575516958637998
 BoxCollider2D:
   m_ObjectHideFlags: 0

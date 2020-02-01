@@ -42,20 +42,16 @@ public class RepairableObject : MonoBehaviour
         }
     }
 
-
-
     void Update()
     {
         currentRepairCooldown -= Time.deltaTime;
     }
-    
 
     [DebugButton]
     public void TakeDamage()
     {
         if(!IsDestoyed())
         {
-
             --currentHP; 
             if( currentHP < 0) currentHP = 0;
             UpdateVisualByHealth();

@@ -4,15 +4,17 @@ using System.Collections;
 public class EnemyLife : MonoBehaviour {
 
     // Salud del enemigo
-    public float health = 1.0f;
+    private float health = 100f;
     public float enemyScore = 100f;
+
+    public GameObject dieParticles;
 
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if(other.tag == Tags.Sword)
         {
-            Damage(50f);
+            Damage(34f);
         }
     }
 
@@ -42,6 +44,7 @@ public class EnemyLife : MonoBehaviour {
 
     public void EnemyDestroyedAnimEnd()
     {
+        Instantiate(dieParticles,transform.position,Quaternion.identity);
         Destroy(this.gameObject);
     }
 }
