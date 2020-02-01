@@ -12,7 +12,7 @@ public class EnemyMoveFollow : MonoBehaviour
 	}
 	
 	void Update () {
-        if (Mathf.Abs(player.transform.position.x - transform.position.x) > 1.10f)
+        if (Mathf.Abs(player.transform.position.x - transform.position.x) > player.GetComponent<PlayerData>().width)
         {
             float direction = player.transform.position.x - transform.position.x;
             Vector3 directionVector = new Vector3(direction, 0, 0);
