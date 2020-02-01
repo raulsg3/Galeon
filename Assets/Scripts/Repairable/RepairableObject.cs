@@ -47,9 +47,8 @@ public class RepairableObject : MonoBehaviour
     [DebugButton]
     public void GiveHealth()
     {
-        if(!IsDestoyed())
+        if(!IsAtFullHealth())
         {
-
             ++currentHP;
             if( currentHP > maxHP) currentHP = maxHP;
             UpdateVisualByHealth();
@@ -86,7 +85,7 @@ public class RepairableObject : MonoBehaviour
     {
         if(collider2D.CompareTag(Tags.Player))
         {
-            if(!IsDestoyed())
+            if(!IsAtFullHealth())
                 SetActiveFeedback(true);
         } 
     }
