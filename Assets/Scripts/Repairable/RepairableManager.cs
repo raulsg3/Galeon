@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class RepairableManager : MonoBehaviour
 {
-    public List<RepairableObject> objectsList;
+    // public List<RepairableObject> objectsList;
+    public RepairableObjectListSO objectsList;
 
     public int GetAlivedObjects()
     {
         int aliveObjects = 0;
-        for (int i = 0; i < objectsList.Count; i++)
+        for (int i = 0; i < objectsList.list.Count; i++)
         {
-            if(!objectsList[i].IsDestoyed())
+            if(!objectsList.list[i].IsDestoyed())
             {
                 ++aliveObjects;
             }
@@ -23,7 +24,7 @@ public class RepairableManager : MonoBehaviour
     {
         float closestDistance = Mathf.Infinity;
         GameObject closestObject = null;
-        foreach (RepairableObject repairableObject in objectsList)
+        foreach (RepairableObject repairableObject in objectsList.list)
         {
             float distance = Vector2.Distance(repairableObject.transform.position,position);
             if(distance < closestDistance)
@@ -38,7 +39,7 @@ public class RepairableManager : MonoBehaviour
     {
         float closestDistance = Mathf.Infinity;
         GameObject closestObject = null;
-        foreach (RepairableObject repairableObject in objectsList)
+        foreach (RepairableObject repairableObject in objectsList.list)
         {
             if(Mathf.Abs(repairableObject.transform.position.y - position.y) < 1)
             {

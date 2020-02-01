@@ -11,6 +11,15 @@ public class RepairableObject : MonoBehaviour
     public GameObject fullHeatlthGO;
     public GameObject midHealthGO;
     public GameObject destroyedGO;
+    public RepairableObjectListSO repairableObjectListSO;
+    void OnEnable()
+    {
+        repairableObjectListSO.AddToList(this);
+    }
+    void OnDisable()
+    {
+        repairableObjectListSO.RemoveFromList(this);
+    }
     public void UpdateVisualByHealth()
     {
         fullHeatlthGO.SetActive(false);

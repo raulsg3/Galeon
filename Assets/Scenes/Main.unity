@@ -5473,6 +5473,17 @@ PrefabInstance:
       propertyPath: objectsList.Array.data[3]
       value: 
       objectReference: {fileID: 1150151658}
+    - target: {fileID: 8719578189808276852, guid: 834b2e5db6c682d4ab66c43d9f11fb2f,
+        type: 3}
+      propertyPath: objectsList
+      value: 
+      objectReference: {fileID: 11400000, guid: 0b220f2d4a16681429e627e2f4d99a95,
+        type: 2}
+    - target: {fileID: 8719578189808276852, guid: 834b2e5db6c682d4ab66c43d9f11fb2f,
+        type: 3}
+      propertyPath: testGO
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 834b2e5db6c682d4ab66c43d9f11fb2f, type: 3}
 --- !u!1 &849834731
@@ -30230,7 +30241,7 @@ PrefabInstance:
     - target: {fileID: 4252761209335618640, guid: df2cb1737e66a0a46b33bd3dad3e9147,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 2.94
       objectReference: {fileID: 0}
     - target: {fileID: 4252761209335618640, guid: df2cb1737e66a0a46b33bd3dad3e9147,
         type: 3}
