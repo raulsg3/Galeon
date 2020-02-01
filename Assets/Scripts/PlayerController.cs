@@ -72,11 +72,11 @@ public class PlayerController : MonoBehaviour
                             Time.deltaTime * velocidadEjeY * gameSettings.playerVerSpeed));
 
 
-        if (Input.GetKey(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             weaponAnimator.SetTrigger("Shoot");
         }
-        else if (Input.GetKey(KeyCode.E))
+        else if (Input.GetKeyDown(KeyCode.E))
         {
             weaponAnimator.SetTrigger("Cut");
         }
