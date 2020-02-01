@@ -6,6 +6,9 @@ public class EnemyMoveRepairable : MonoBehaviour
     private RepairableObject target = null;
     private bool destroying = false;
 
+    public Animator enemyWalkAnimator;
+    public Animator enemyActionAnimator;
+
     public float speed = 5f;
 
     //Daño
@@ -13,7 +16,9 @@ public class EnemyMoveRepairable : MonoBehaviour
     private float accAttackTime = 0.0f;
 
     void Start () {
-	}
+        //enemyWalkAnimator = this.transform.Find("Visual/Body").GetComponent<Animator>();
+        //enemyActionAnimator = this.transform.Find("Weapons").GetComponent<Animator>();
+    }
 	
 	void Update () {
         if (target == null || target.IsDestoyed())

@@ -52,3 +52,5 @@ MonoBehaviour:
     type: 3}
   enemyDestroy: {fileID: 117212, guid: 48437af4cfffcc34eae1f9d4860d9bf4, type: 3}
   maxEnemies: 10
+  enemyWalkAnimator: {fileID: 0}
+  enemyActionAnimator: {fileID: 0}
