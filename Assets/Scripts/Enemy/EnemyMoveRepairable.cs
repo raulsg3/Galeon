@@ -26,14 +26,16 @@ public class EnemyMoveRepairable : MonoBehaviour
 
         if (!destroying && target != null && !target.IsDestoyed())
         {
+            enemyWalkAnimator.SetBool("Walking", true);
+
             float direction = target.transform.position.x - transform.position.x;
 
             Vector3 directionVector = new Vector3(direction, 0, 0);
             directionVector.Normalize();
 
             transform.Translate(directionVector * speed * Time.deltaTime);
-            enemyWalkAnimator.SetBool("Walking", true);
-             if(directionVector.x > 0){
+
+            if(directionVector.x > 0){
                 transform.localScale = new Vector3(-1,1, 1);
             }else if (directionVector.x < 0) {
                 transform.localScale = new Vector3(1, 1, 1);
@@ -42,6 +44,8 @@ public class EnemyMoveRepairable : MonoBehaviour
 
         if (destroying && target != null)
         {
+            enemyWalkAnimator.SetBool("Walking", false);
+
             if (!target.IsDestoyed())
             {
                 accAttackTime += Time.deltaTime;
@@ -57,8 +61,6 @@ public class EnemyMoveRepairable : MonoBehaviour
             {
                 destroying = false;
             }
-            enemyWalkAnimator.SetBool("Walking", false);
-            
         }
 
         if(destroying)
@@ -79,5 +81,11 @@ public class EnemyMoveRepairable : MonoBehaviour
     {
         if (collider2D.CompareTag(Tags.RepairableObject))
             destroying = true;
+    }
+
+    void OnTriggerExit2D(Collider2D collider2D)
+    {
+        if (collider2D.CompareTag(Tags.RepairableObject))
+            destroying = false;
     }
 }
