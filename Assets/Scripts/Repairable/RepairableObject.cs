@@ -8,10 +8,19 @@ public class RepairableObject : MonoBehaviour
 
     public int currentHP = 3;
     private int maxHP = 3 ;
+
+    private float currentRepairCooldown = 0;
+    private float cooldownBetweenRepair = 1f;
     public GameObject fullHeatlthGO;
     public GameObject midHealthGO;
     public GameObject destroyedGO;
     public RepairableObjectListSO repairableObjectListSO;
+    void Awake()
+    {
+        currentRepairCooldown = cooldownBetweenRepair;
+        currentHP = maxHP;
+        UpdateVisualByHealth();
+    }
     void OnEnable()
     {
         repairableObjectListSO.AddToList(this);
@@ -32,11 +41,13 @@ public class RepairableObject : MonoBehaviour
         }
     }
 
-    void Awake()
+
+
+    void Update()
     {
-        currentHP = maxHP;
-        UpdateVisualByHealth();
+        currentRepairCooldown -= Time.deltaTime;
     }
+    
 
     [DebugButton]
     public void TakeDamage()
@@ -56,14 +67,16 @@ public class RepairableObject : MonoBehaviour
     [DebugButton]
     public void GiveHealth()
     {
-        if(!IsAtFullHealth())
+        if(!IsAtFullHealth() && currentRepairCooldown <= 0)
         {
+            currentRepairCooldown = cooldownBetweenRepair;
             ++currentHP;
             if( currentHP > maxHP) currentHP = maxHP;
             UpdateVisualByHealth();
             if(currentHP >= maxHP)
             {
                 currentHP = maxHP;
+                SetActiveFeedback(false);
 
             }
         }
@@ -101,7 +114,7 @@ public class RepairableObject : MonoBehaviour
  
     void OnTriggerExit2D(Collider2D collider2D)
     {
-         if(collider2D.CompareTag(Tags.Player))
+        if(collider2D.CompareTag(Tags.Player))
         {
             SetActiveFeedback(false);
         } 
