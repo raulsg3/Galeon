@@ -332,9 +332,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpriteRenderer: {fileID: 36888937}
   playerHPCanvas: {fileID: 8745719812118209046}
+  healthImage: {fileID: 7856384713271482162}
   gameSettings: {fileID: 11400000, guid: d8f3b228e622e0044b875a77b80446d9, type: 2}
   m_rigidBody: {fileID: 396529499}
-  currentObjectToRepair: {fileID: 0}
   playerAnimator: {fileID: 4590724379623750185}
   weaponAnimator: {fileID: 4735925478366121587}
   currentHP: 0

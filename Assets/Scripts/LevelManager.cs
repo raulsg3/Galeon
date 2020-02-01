@@ -52,6 +52,11 @@ public class LevelManager : MonoBehaviour
     }
     #endregion
 
+    public void PlayerHasDied()
+    {
+
+    }
+
     // Start is called before the first frame update
     void Start()
     {

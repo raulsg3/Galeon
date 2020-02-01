@@ -12,21 +12,24 @@ public class PlayerController : MonoBehaviour
     public GameSettingsSO gameSettings;
     public Rigidbody2D m_rigidBody;
     bool bIsInsideStairCollider = false;
-    public RepairableObject currentObjectToRepair;
+    private RepairableObject currentObjectToRepair;
     public Animator playerAnimator;
     public Animator weaponAnimator;
     public float currentStopTime {get; set;} = 0f;
     public int currentHP;
     private float currentSwordCD = 0;
     private float currentPistolCD = 0;
+    bool bIsPlayerDead= false;
     void Awake()
     {
         currentHP = gameSettings.playerMaxHealth;
+        UpdateHealthSlider();
       
 
     }
     void Update()
     {
+        if(bIsPlayerDead) return;
         // Este tiempo se establece desde el WeaponController, para parar al personaje tras un disparo
         currentStopTime -= Time.deltaTime;
         currentPistolCD -= Time.deltaTime;
@@ -129,13 +132,22 @@ public class PlayerController : MonoBehaviour
     {
         playerSpriteRenderer.color = Color.red;
         currentHP--;
+        if(currentHP < 0) currentHP = 0;
+        UpdateHealthSlider();
+        if(currentHP == 0)
+        {
+            PlayerDied();
+        }
+    }
+    private void PlayerDied()
+    {
+        bIsPlayerDead =true;
+        LevelManager.levelManagerInstance.PlayerHasDied();
     }
 
     private void UpdateHealthSlider()
     {
-        // healthImage.fillAmount
-        // healthSlider.value
-
+        healthImage.fillAmount = currentHP / gameSettings.playerMaxHealth; 
     }
 
     IEnumerator C_DamageFeedback()
