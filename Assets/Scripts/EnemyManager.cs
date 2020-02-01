@@ -42,13 +42,6 @@ public class EnemyManager : MonoBehaviour
     private GameObject spawnPointsLeft;
     private GameObject spawnPointsRight;
 
-    // Márgenes del mapa de juego
-    //private float X_MIN = -7.0f;
-    //private float X_MAX = 6.56f;
-
-    //private float Y_MIN = -4.64f;
-    //private float Y_MAX = 4.42f;
-
     //Fin del juego
     private bool endGame = false;
 
@@ -64,6 +57,9 @@ public class EnemyManager : MonoBehaviour
 
     //GameObject de la escena donde instanciar los enemigos
     private GameObject enemiesGameObject;
+
+    //Número máximo de enemigos al mismo tiempo
+    public int maxEnemies = 10;
 
     #region Singleton
     public static EnemyManager enemyManagerInstance;
@@ -95,56 +91,65 @@ public class EnemyManager : MonoBehaviour
 
         while (!endGame)
         {
-            //Espera entre oleadas de enemigos
-            yield return new WaitForSeconds(waitingTime);
-
             //Generación de la siguiente oleada
             GenerateNextWave();
+
+            //Espera entre oleadas de enemigos
+            yield return new WaitForSeconds(waitingTime);
         }
     }
 
     //Generación aleatoria de la siguiente oleada
     void GenerateNextWave()
     {
-        //Número de enemigos en cada lado
-        int numLeftEnemies = 0;
-        int numRightEnemies = 0;
-
-        while (numLeftEnemies == 0 && numRightEnemies == 0)
+        if (CanGenerateNextWave())
         {
-            numLeftEnemies = Random.Range(0, numDecks + 1);
-            numRightEnemies = Random.Range(0, numDecks + 1);
-        }
+            //Número de enemigos en cada lado
+            int numLeftEnemies = 0;
+            int numRightEnemies = 0;
 
-        //Enemigos lado izquierdo
-        if (numLeftEnemies > 0)
-        {
-            EnemyData[] leftEnemies = new EnemyData[numLeftEnemies];
-
-            for (int enemy = 0; enemy < numLeftEnemies; ++enemy)
+            while (numLeftEnemies == 0 && numRightEnemies == 0)
             {
-                leftEnemies[enemy].side = Side.Left;
-                leftEnemies[enemy].deck = GenerateRandomDeck();
-                leftEnemies[enemy].attack = GenerateRandomAttack();
+                numLeftEnemies = Random.Range(0, numDecks + 1);
+                numRightEnemies = Random.Range(0, numDecks + 1);
+            }
 
-                GenerateOneEnemy(leftEnemies[enemy].side, leftEnemies[enemy].deck, leftEnemies[enemy].attack);
+            //Enemigos lado izquierdo
+            if (numLeftEnemies > 0)
+            {
+                EnemyData[] leftEnemies = new EnemyData[numLeftEnemies];
+
+                for (int enemy = 0; enemy < numLeftEnemies; ++enemy)
+                {
+                    leftEnemies[enemy].side = Side.Left;
+                    leftEnemies[enemy].deck = GenerateRandomDeck();
+                    leftEnemies[enemy].attack = GenerateRandomAttack();
+
+                    GenerateOneEnemy(leftEnemies[enemy].side, leftEnemies[enemy].deck, leftEnemies[enemy].attack);
+                }
+            }
+
+            //Enemigos lado derecho
+            if (numRightEnemies > 0)
+            {
+                EnemyData[] rightEnemies = new EnemyData[numRightEnemies];
+
+                for (int enemy = 0; enemy < numRightEnemies; ++enemy)
+                {
+                    rightEnemies[enemy].side = Side.Right;
+                    rightEnemies[enemy].deck = GenerateRandomDeck();
+                    rightEnemies[enemy].attack = GenerateRandomAttack();
+
+                    GenerateOneEnemy(rightEnemies[enemy].side, rightEnemies[enemy].deck, rightEnemies[enemy].attack);
+                }
             }
         }
+    }
 
-        //Enemigos lado derecho
-        if (numRightEnemies > 0)
-        {
-            EnemyData[] rightEnemies = new EnemyData[numRightEnemies];
-
-            for (int enemy = 0; enemy < numRightEnemies; ++enemy)
-            {
-                rightEnemies[enemy].side = Side.Right;
-                rightEnemies[enemy].deck = GenerateRandomDeck();
-                rightEnemies[enemy].attack = GenerateRandomAttack();
-
-                GenerateOneEnemy(rightEnemies[enemy].side, rightEnemies[enemy].deck, rightEnemies[enemy].attack);
-            }
-        }
+    //Comprueba que no hayamos llegado al límite de enemigos
+    bool CanGenerateNextWave()
+    {
+        return enemiesGameObject.transform.childCount < maxEnemies;
     }
 
     //Devuelve una cubierta aleatoria
@@ -209,10 +214,10 @@ public class EnemyManager : MonoBehaviour
         switch (attack)
         {
             case Attack.Attack:
-                enemyInstance.AddComponent<EnemyMoveFollow>();
+                enemyInstance.AddComponent<EnemyMovePlayer>();
                 break;
             case Attack.Destroy:
-                enemyInstance.AddComponent<EnemyMoveFollow>();
+                enemyInstance.AddComponent<EnemyMoveRepairable>();
                 break;
             default:
                 break;

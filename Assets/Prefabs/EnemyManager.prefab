@@ -46,7 +46,7 @@ MonoBehaviour:
   numDecks: 3
   spawnPoints: {fileID: 4252761209335618643, guid: df2cb1737e66a0a46b33bd3dad3e9147,
     type: 3}
-  waitingTime: 1
+  waitingTime: 3
   startWaitingTime: 1
   enemyAttack: {fileID: 117212, guid: 574390c6ddc6c234e85b1948dc223c58, type: 3}
   enemyDestroy: {fileID: 117212, guid: 574390c6ddc6c234e85b1948dc223c58, type: 3}

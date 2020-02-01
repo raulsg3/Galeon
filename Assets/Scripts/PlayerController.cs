@@ -65,9 +65,8 @@ public class PlayerController : MonoBehaviour
             
         }
 
-        if(currentObjectToRepair != null)
-        {
-        }
+            
+        
 
         playerAnimator.SetBool("Walking", isWalking);
         
@@ -82,13 +81,24 @@ public class PlayerController : MonoBehaviour
                             Time.deltaTime * velocidadEjeY * gameSettings.playerVerSpeed));
 
 
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.J))
         {
             weaponAnimator.SetTrigger("Shoot");
         }
-        else if (Input.GetKeyDown(KeyCode.E))
+        else if (Input.GetKeyDown(KeyCode.K))
         {
             weaponAnimator.SetTrigger("Cut");
+        }
+        else if (Input.GetKeyDown(KeyCode.L))
+        {
+            weaponAnimator.SetTrigger("Repair");
+            if(currentObjectToRepair != null)
+            {
+                currentObjectToRepair.GiveHealth();
+            }
+            else{
+                Debug.Log("Not object to repair");
+            }
         }
     }
 
