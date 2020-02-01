@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 633280249387964471}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 633280250306422335}
   - component: {fileID: 36888937}
   - component: {fileID: 4590724379623750185}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -144,7 +144,7 @@ GameObject:
   - component: {fileID: 396529499}
   - component: {fileID: 4938345426527324381}
   - component: {fileID: 392575516958637998}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: EnemyDestroy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -239,7 +239,7 @@ GameObject:
   - component: {fileID: 4826281817430410702}
   - component: {fileID: 4735925478366121587}
   - component: {fileID: 6893065678853855812}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Weapons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -310,7 +310,7 @@ GameObject:
   - component: {fileID: 7352599647131768141}
   - component: {fileID: 2784858400916047749}
   - component: {fileID: 7594027675573144961}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sword
   m_TagString: Sword
   m_Icon: {fileID: 0}
@@ -418,7 +418,7 @@ GameObject:
   - component: {fileID: 2057351671574448620}
   - component: {fileID: 4089559469811430614}
   - component: {fileID: 1812109505286528810}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
