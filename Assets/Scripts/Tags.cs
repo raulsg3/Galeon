@@ -10,4 +10,6 @@ public static class Tags {
     public static string Enemies = "Enemies";
     public static string Ladder = "Ladder";
     public static string RepairableObject = "ObjectToRepair";
+    public static string Bullet = "Bullet";
+    public static string Sword = "Sword";
 }

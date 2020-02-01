@@ -10,6 +10,9 @@ TagManager:
   - EnemyManager
   - Enemy
   - Enemies
+  - Bullet
+  - Sword
+  - EnemySword
   layers:
   - Default
   - TransparentFX

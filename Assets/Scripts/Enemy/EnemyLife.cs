@@ -7,25 +7,13 @@ public class EnemyLife : MonoBehaviour {
     public float health = 1.0f;
     public float enemyScore = 100f;
 
-	void Start ()
-    {
-	}
-	
-	void Update ()
-    {
-	}
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        /*
-        if(other.tag == Tags.PlayerBullet)
+        if(other.tag == Tags.Sword)
         {
-            if (other.gameObject.GetComponent<ForwardBullet>() != null)
-                Damage(other.gameObject.GetComponent<ForwardBullet>().damage);
-            else
-                Damage(other.gameObject.GetComponent<ConeBullet>().damage);
+            Damage(50f);
         }
-        */
     }
 
     // Llamada cuando el enemigo recibe daño
@@ -35,22 +23,21 @@ public class EnemyLife : MonoBehaviour {
         health -= damage;
 
         // Comprueba
-        /*
         if (health <= 0.0f)
         {
-            DropManager.DropManagerInstance.basicEnemyDrop(this.transform.position);
-            GameManager.GameManagerInstance.increaseScore(enemyScore);
+            // DropManager.DropManagerInstance.basicEnemyDrop(this.transform.position);
+            // GameManager.GameManagerInstance.increaseScore(enemyScore);
 
-            if(GetComponent<EnemyShoot>() != null)
-                GetComponent<EnemyShoot>().enabled = false;
+            // if(GetComponent<EnemyShoot>() != null)
+            //     GetComponent<EnemyShoot>().enabled = false;
 
-            GetComponent<Animator>().SetTrigger("Destroy");
-            GetComponent<CircleCollider2D>().enabled = false;
+            // GetComponent<Animator>().SetTrigger("Destroy");
+            // GetComponent<CircleCollider2D>().enabled = false;
 
-            this.GetComponent<AudioSource>().clip = SoundManager.SoundManagerInstance.getEnemyDestroyed();
-            this.GetComponent<AudioSource>().Play();
+            // this.GetComponent<AudioSource>().clip = SoundManager.SoundManagerInstance.getEnemyDestroyed();
+            // this.GetComponent<AudioSource>().Play();
+            EnemyDestroyedAnimEnd();
         }
-        */
     }
 
     public void EnemyDestroyedAnimEnd()
