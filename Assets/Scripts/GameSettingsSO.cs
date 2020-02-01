@@ -7,6 +7,9 @@ public class GameSettingsSO : ScriptableObject
 {
     public float playerHorSpeed = 2f;
     public float playerVerSpeed = 2f;
+    public float pistolCooldown = 1f;
+    public float swordCooldown = 1f;
+    public int playerMaxHealth = 5;
 
     public float bulletSpeed = 15f;
     public float shootRecoil = 2.5f;

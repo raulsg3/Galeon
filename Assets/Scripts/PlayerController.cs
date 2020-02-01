@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
     [Header("References")]
     public SpriteRenderer playerSpriteRenderer;
+    public Canvas playerHPCanvas;
+    public Image healthImage;
     public GameSettingsSO gameSettings;
     public Rigidbody2D m_rigidBody;
     bool bIsInsideStairCollider = false;
@@ -14,10 +17,20 @@ public class PlayerController : MonoBehaviour
     public Animator weaponAnimator;
     public float currentStopTime {get; set;} = 0f;
     public int currentHP;
+    private float currentSwordCD = 0;
+    private float currentPistolCD = 0;
+    void Awake()
+    {
+        currentHP = gameSettings.playerMaxHealth;
+      
+
+    }
     void Update()
     {
         // Este tiempo se establece desde el WeaponController, para parar al personaje tras un disparo
         currentStopTime -= Time.deltaTime;
+        currentPistolCD -= Time.deltaTime;
+        currentSwordCD -= Time.deltaTime;
 
         float velocidadEjeX = 0 ; // -1 izq, 1 der, 0 quieto
         float velocidadEjeY = 0 ; // 
@@ -27,12 +40,14 @@ public class PlayerController : MonoBehaviour
             //Velocidad positiva
             velocidadEjeX = 1;
             gameObject.transform.localScale = new Vector3(-1,1,1);
+            playerHPCanvas.transform.localScale= new Vector3(-1,1,1);
             isWalking = true;
         }
         else if (Input.GetKey(KeyCode.A))
         {
             //Velocidad negativa
             gameObject.transform.localScale = new Vector3(1,1,1);
+            playerHPCanvas.transform.localScale= new Vector3(1,1,1);
             velocidadEjeX = -1;
             isWalking = true;
         }
@@ -77,13 +92,15 @@ public class PlayerController : MonoBehaviour
                             Time.deltaTime * velocidadEjeY * gameSettings.playerVerSpeed));
 
 
-        CheckForDamageFeedbackUpdate();
-        if (Input.GetKeyDown(KeyCode.J))
+        // CheckForDamageFeedbackUpdate();
+        if (Input.GetKeyDown(KeyCode.J) && currentPistolCD <= 0)
         {
+            currentPistolCD = gameSettings.pistolCooldown;
             weaponAnimator.SetTrigger("Shoot");
         }
-        else if (Input.GetKeyDown(KeyCode.K))
+        else if (Input.GetKeyDown(KeyCode.K) && currentSwordCD <= 0)
         {
+            currentSwordCD = gameSettings.swordCooldown;
             weaponAnimator.SetTrigger("Cut");
         }
         else if (Input.GetKeyDown(KeyCode.L))
@@ -103,7 +120,7 @@ public class PlayerController : MonoBehaviour
     {
         while(playerSpriteRenderer.color != Color.white)
         {
-            
+
         }
         
     }
@@ -111,10 +128,29 @@ public class PlayerController : MonoBehaviour
     public void TakeDamage()
     {
         playerSpriteRenderer.color = Color.red;
+        currentHP--;
     }
+
+    private void UpdateHealthSlider()
+    {
+        // healthImage.fillAmount
+        // healthSlider.value
+
+    }
+
     IEnumerator C_DamageFeedback()
     {
         yield return null;
+    }
+
+    
+    public void CheckPistolCDUpdate()
+    {
+
+    }
+    public void CheckSwordCDUpdate()
+    {
+        
     }
     void OnTriggerEnter2D(Collider2D collider2D)
     {
