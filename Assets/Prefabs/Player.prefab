@@ -206,7 +206,7 @@ GameObject:
   - component: {fileID: 396529499}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -332,6 +332,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 6350024390783877999, guid: 23a9e4a29c8551a40aae169caca7cfc7,
     type: 3}
+  spawnPosition: {fileID: 315314814987438407}
 --- !u!1 &3078697594535133642
 GameObject:
   m_ObjectHideFlags: 0

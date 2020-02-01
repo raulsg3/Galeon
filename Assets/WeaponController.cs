@@ -11,6 +11,8 @@ public class WeaponController : MonoBehaviour
     void Shoot()
     {
         Debug.Log("DISPARA!");
-        //Instantiate(myPrefab, spawnPosition., Quaternion.identity);
+        GameObject bullet = Instantiate(bulletPrefab, spawnPosition.GetComponent<Transform>(), Quaternion.identity);
+        Rigidbody rb = bullet.GetComponent<Rigidbody>();
+        rb.velocity = new Vector3(0, 10, 0);
     }
 }
