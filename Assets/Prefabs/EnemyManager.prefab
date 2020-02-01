@@ -48,6 +48,7 @@ MonoBehaviour:
     type: 3}
   waitingTime: 3
   startWaitingTime: 1
-  enemyAttack: {fileID: 117212, guid: 574390c6ddc6c234e85b1948dc223c58, type: 3}
+  enemyAttack: {fileID: 633280250651379727, guid: c973bff64ab63fa43831b34a835fad16,
+    type: 3}
   enemyDestroy: {fileID: 117212, guid: 48437af4cfffcc34eae1f9d4860d9bf4, type: 3}
   maxEnemies: 10
