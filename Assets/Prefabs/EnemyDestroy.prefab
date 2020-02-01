@@ -248,7 +248,7 @@ MonoBehaviour:
   enemyWalkAnimator: {fileID: 0}
   enemyActionAnimator: {fileID: 0}
   speed: 5
-  attackTime: 5
+  attackTime: 2
 --- !u!1 &2623826271000879771
 GameObject:
   m_ObjectHideFlags: 0
