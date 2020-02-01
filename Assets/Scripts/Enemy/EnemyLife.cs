@@ -4,7 +4,7 @@ using System.Collections;
 public class EnemyLife : MonoBehaviour {
 
     // Salud del enemigo
-    private float health = 100f;
+    public float health = 100f;
     public float enemyScore = 100f;
 
     public GameObject dieParticles;

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b0e01e079d38ba4896fb32e73f5b6e4, type: 3}
   m_Name: GameSettings
   m_EditorClassIdentifier: 
-  playerHorSpeed: 8
-  playerVerSpeed: 8
+  playerHorSpeed: 6
+  playerVerSpeed: 6
   pistolCooldown: 1
   swordCooldown: 0.1
   playerMaxHealth: 5
@@ -22,6 +22,7 @@ MonoBehaviour:
   stopTime: 0.25
   damagePerMidObject: 0.5
   damagePerDestroyed: 1
+  enemyFeedbackSpeed: 1
   maxEnemies: 15
   waitingTime: 6
   startWaitingTime: 6
