@@ -5,16 +5,15 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [Header("References")]
+    public SpriteRenderer playerSpriteRenderer;
     public GameSettingsSO gameSettings;
     public Rigidbody2D m_rigidBody;
     bool bIsInsideStairCollider = false;
-    RepairableObject currentObjectToRepair;
-
+    public RepairableObject currentObjectToRepair;
     public Animator playerAnimator;
     public Animator weaponAnimator;
-
     public float currentStopTime {get; set;} = 0f;
-
+    public int currentHP;
     void Update()
     {
         // Este tiempo se establece desde el WeaponController, para parar al personaje tras un disparo
@@ -65,9 +64,6 @@ public class PlayerController : MonoBehaviour
             
         }
 
-            
-        
-
         playerAnimator.SetBool("Walking", isWalking);
         
         // Stop the player X if needed
@@ -81,6 +77,7 @@ public class PlayerController : MonoBehaviour
                             Time.deltaTime * velocidadEjeY * gameSettings.playerVerSpeed));
 
 
+        CheckForDamageFeedbackUpdate();
         if (Input.GetKeyDown(KeyCode.J))
         {
             weaponAnimator.SetTrigger("Shoot");
@@ -102,12 +99,38 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void CheckForDamageFeedbackUpdate()
+    {
+        while(playerSpriteRenderer.color != Color.white)
+        {
+            
+        }
+        
+    }
+    [DebugButton]
+    public void TakeDamage()
+    {
+        playerSpriteRenderer.color = Color.red;
+    }
+    IEnumerator C_DamageFeedback()
+    {
+        yield return null;
+    }
     void OnTriggerEnter2D(Collider2D collider2D)
     {
         if(collider2D.CompareTag(Tags.Ladder))
         {
             bIsInsideStairCollider = true;
         } 
+        
+        if(collider2D.CompareTag(Tags.RepairableObject))
+        {
+            currentObjectToRepair = collider2D.GetComponent<RepairableObject>();
+        } 
+
+    }
+    void OnTriggerStay2D(Collider2D collider2D)
+    {
         
         if(collider2D.CompareTag(Tags.RepairableObject))
         {
