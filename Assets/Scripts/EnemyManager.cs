@@ -36,10 +36,11 @@ public class EnemyManager : MonoBehaviour
         public Attack attack;
     }
 
-    //Posiciones iniciales de los enemigos [side, deck]
-    Vector2[,] spawnPosition = new Vector2[2, 3] {
-        { new Vector2(100, 100), new Vector2(150, 300), new Vector2(200, 500)},         //Cubierta izquierda
-        { new Vector2(1100, 100), new Vector2(1050, 300), new Vector2(1000, 500)} };    //Cubierta derecha
+    //Puntos de aparición de enemigos
+    public GameObject spawnPoints;
+
+    private GameObject spawnPointsLeft;
+    private GameObject spawnPointsRight;
 
     // Márgenes del mapa de juego
     //private float X_MIN = -7.0f;
@@ -57,9 +58,12 @@ public class EnemyManager : MonoBehaviour
     //Tiempo de espera al iniciar el juego
     public float startWaitingTime = 5.0f;
 
-    //Prefab de los enemigos
+    //Prefabs de los enemigos
     public GameObject enemyAttack;
     public GameObject enemyDestroy;
+
+    //GameObject de la escena donde instanciar los enemigos
+    private GameObject enemiesGameObject;
 
     #region Singleton
     public static EnemyManager enemyManagerInstance;
@@ -73,6 +77,11 @@ public class EnemyManager : MonoBehaviour
 
     void Start()
     {
+        spawnPointsLeft = spawnPoints.transform.Find("Left").gameObject;
+        spawnPointsRight = spawnPoints.transform.Find("Right").gameObject;
+
+        enemiesGameObject = GameObject.FindGameObjectWithTag(Tags.Enemies);
+
         StartCoroutine(GenerateEnemies());
 	}
 	
@@ -103,39 +112,45 @@ public class EnemyManager : MonoBehaviour
 
         while (numLeftEnemies == 0 && numRightEnemies == 0)
         {
-            numLeftEnemies = Random.Range(0, numDecks);
-            numRightEnemies = Random.Range(0, numDecks);
+            numLeftEnemies = Random.Range(0, numDecks + 1);
+            numRightEnemies = Random.Range(0, numDecks + 1);
         }
 
-        //Enemigos
-        EnemyData[] leftEnemies = new EnemyData[numLeftEnemies];
-        EnemyData[] rightEnemies = new EnemyData[numRightEnemies];
-
-        //Lado izquierdo
-        for (int enemy = 0; enemy < numLeftEnemies; ++enemy)
+        //Enemigos lado izquierdo
+        if (numLeftEnemies > 0)
         {
-            leftEnemies[enemy].side     = Side.Left;
-            leftEnemies[enemy].deck     = GenerateRandomDeck();
-            leftEnemies[enemy].attack   = GenerateRandomAttack();
+            EnemyData[] leftEnemies = new EnemyData[numLeftEnemies];
 
-            GenerateOneEnemy(leftEnemies[enemy].side, leftEnemies[enemy].deck, leftEnemies[enemy].attack);
+            for (int enemy = 0; enemy < numLeftEnemies; ++enemy)
+            {
+                leftEnemies[enemy].side = Side.Left;
+                leftEnemies[enemy].deck = GenerateRandomDeck();
+                leftEnemies[enemy].attack = GenerateRandomAttack();
+
+                GenerateOneEnemy(leftEnemies[enemy].side, leftEnemies[enemy].deck, leftEnemies[enemy].attack);
+            }
         }
 
-        //Lado derecho
-        for (int enemy = 0; enemy < numRightEnemies; ++enemy)
+        //Enemigos lado derecho
+        if (numRightEnemies > 0)
         {
-            rightEnemies[enemy].side     = Side.Right;
-            rightEnemies[enemy].deck     = GenerateRandomDeck();
-            rightEnemies[enemy].attack   = GenerateRandomAttack();
+            EnemyData[] rightEnemies = new EnemyData[numRightEnemies];
 
-            GenerateOneEnemy(rightEnemies[enemy].side, rightEnemies[enemy].deck, rightEnemies[enemy].attack);
+            for (int enemy = 0; enemy < numRightEnemies; ++enemy)
+            {
+                rightEnemies[enemy].side = Side.Right;
+                rightEnemies[enemy].deck = GenerateRandomDeck();
+                rightEnemies[enemy].attack = GenerateRandomAttack();
+
+                GenerateOneEnemy(rightEnemies[enemy].side, rightEnemies[enemy].deck, rightEnemies[enemy].attack);
+            }
         }
     }
 
     //Devuelve una cubierta aleatoria
     private Deck GenerateRandomDeck()
     {
-        return (Deck)Random.Range(0, numDecks - 1);
+        return (Deck)Random.Range(0, numDecks);
     }
 
     //Devuelve un tipo de ataque aleatorio
@@ -174,14 +189,17 @@ public class EnemyManager : MonoBehaviour
     //Devuelve la posición inicial del enemigo en función del lado y la cubierta
     private Vector2 GetEnemyPosition(Side side, Deck deck)
     {
-        return spawnPosition[(int)side, (int)deck];
+        GameObject spawnPoints = (side == Side.Left) ? spawnPointsLeft : spawnPointsRight;
+        Transform spawnPointTransform = spawnPoints.transform.Find(((int)deck).ToString());
+
+        return new Vector2(spawnPointTransform.position.x, spawnPointTransform.position.y);
     }
 
     //Instanciación de un enemigo concreto con las características indicadas
     private void InstantiateEnemy(GameObject enemyPrefab, Vector2 enemyPosition, Attack attack)
     {
         //Instancia
-        GameObject enemyInstance = (GameObject)Instantiate(enemyPrefab, enemyPosition, Quaternion.identity);
+        GameObject enemyInstance = (GameObject)Instantiate(enemyPrefab, enemyPosition, Quaternion.identity, enemiesGameObject.transform);
 
         //Componentes
         SetAttack(enemyInstance, attack); //Ataque
@@ -201,6 +219,18 @@ public class EnemyManager : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    //Fin del juego
+    public void EndGame()
+    {
+        endGame = true;
+
+        //Matar enemigos en pantalla
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag(Tags.Enemy);
+
+        //foreach (GameObject destroyable in enemies)
+        //    Destroy(destroyable);
     }
 
     /*
@@ -325,16 +355,4 @@ public class EnemyManager : MonoBehaviour
         InstantiateEnemy(enemyRoomba, new Vector3(xCenterPosition + xRndDistance, Y_MAX, 0.0f), MovementType.Sin, AttackType.NoAttack);
     }
     */
-
-    //Fin del juego
-    public void EndGame()
-    {
-        endGame = true;
-
-        //Matar enemigos en pantalla
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag(Tags.Enemy);
-
-        //foreach (GameObject destroyable in enemies)
-        //    Destroy(destroyable);
-    }
 }

@@ -7,6 +7,8 @@ TagManager:
   - Stairs
   - EnemyManager
   - Enemy
+  - EnemySpawnPoints
+  - Enemies
   layers:
   - Default
   - TransparentFX

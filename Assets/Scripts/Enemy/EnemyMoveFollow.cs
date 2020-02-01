@@ -12,9 +12,11 @@ public class EnemyMoveFollow : MonoBehaviour
 	}
 	
 	void Update () {
+        /*
         Vector3 directionVector = player.transform.position - transform.position;
         directionVector.Normalize();
 
         transform.Translate(directionVector * speed * Time.deltaTime);
+        */
 	}
 }

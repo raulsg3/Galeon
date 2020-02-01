@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("References")]
     public GameSettingsSO gameSettings;
     public Rigidbody2D m_rigidBody;
     bool bIsInsideStairCollider = false;
 
     public Animator playerAnimator;
     public Animator weaponAnimator;
+
 
     void Update()
     {
@@ -20,25 +22,42 @@ public class PlayerController : MonoBehaviour
         {
             //Velocidad positiva
             velocidadEjeX = 1;
+            gameObject.transform.localScale = new Vector3(-1,1,1);
             isWalking = true;
         }
         else if (Input.GetKey(KeyCode.A))
         {
             //Velocidad negativa
+            gameObject.transform.localScale = new Vector3(1,1,1);
             velocidadEjeX = -1;
             isWalking = true;
         }
 
-        if(Input.GetKey(KeyCode.S) && bIsInsideStairCollider)
+        if(bIsInsideStairCollider)
         {
-            velocidadEjeY = -1;
-            isWalking = true;
-        }
-        
-        if(Input.GetKey(KeyCode.W) && bIsInsideStairCollider)
-        {
-            velocidadEjeY = 1;
-            isWalking = true;
+            if(Input.GetKey(KeyCode.S))
+            {
+                velocidadEjeY = -1;
+                isWalking = true;
+                m_rigidBody.gravityScale = 0;
+                m_rigidBody.isKinematic = true;
+                
+            }else if (Input.GetKey(KeyCode.W))
+            {
+                velocidadEjeY = 1;
+                isWalking = true;
+                m_rigidBody.isKinematic = true;
+                m_rigidBody.gravityScale = 0;
+            }else{
+                m_rigidBody.gravityScale = 1;
+                m_rigidBody.isKinematic = false;
+
+            }
+        }else{
+            m_rigidBody.gravityScale = 1;
+            m_rigidBody.isKinematic = false;
+
+            
         }
 
         playerAnimator.SetBool("Walking", isWalking);
@@ -46,8 +65,6 @@ public class PlayerController : MonoBehaviour
 
         transform.Translate(new Vector2(Time.deltaTime * velocidadEjeX * gameSettings.playerHorSpeed,
                             Time.deltaTime * velocidadEjeY * gameSettings.playerVerSpeed));
-        // m_rigidBody.velocity = new Vector2(m_rigidBody.velocity.x, gameSettings.playerVerSpeed * velocidadEjeY);
-        // m_rigidBody.velocity = new Vector2(velocidadEjeX * gameSettings.playerHorSpeed, m_rigidBody.velocity.y);
 
 
         if (Input.GetKey(KeyCode.Q))
@@ -65,7 +82,6 @@ public class PlayerController : MonoBehaviour
         if(collider2D.CompareTag("Stairs"))
         {
             bIsInsideStairCollider = true;
-            Debug.Log("Enter stairs");
         } 
     }
     void OnTriggerExit2D(Collider2D collider2D)
@@ -73,7 +89,6 @@ public class PlayerController : MonoBehaviour
         if(collider2D.CompareTag("Stairs")) 
         {
             bIsInsideStairCollider = false;
-            Debug.Log("Exit stairs");
         }
     }
 }
