@@ -161,7 +161,7 @@ public class EnemyManager : MonoBehaviour
     //Devuelve un tipo de ataque aleatorio
     private Attack GenerateRandomAttack()
     {
-        return (Attack)Random.Range(0, System.Enum.GetNames(typeof(Attack)).Length - 1);
+        return (Attack)Random.Range(0, System.Enum.GetNames(typeof(Attack)).Length);
     }
 
     //Genera un único enemigo con las características indicadas

@@ -4,7 +4,16 @@ using UnityEngine;
 
 public class RepairableManager : MonoBehaviour
 {
-    // public List<RepairableObject> objectsList;
+    #region Singleton
+    public static RepairableManager repairableManagerInstance;
+
+    void Awake()
+    {
+        if (repairableManagerInstance == null)
+            repairableManagerInstance = gameObject.GetComponent<RepairableManager>();
+    }
+    #endregion
+
     public RepairableObjectListSO objectsList;
 
     public int GetAlivedObjects()
@@ -26,12 +35,15 @@ public class RepairableManager : MonoBehaviour
         GameObject closestObject = null;
         foreach (RepairableObject repairableObject in objectsList.list)
         {
-            float distance = Vector2.Distance(repairableObject.transform.position,position);
-            if(distance < closestDistance)
+            if (!repairableObject.IsDestoyed())
             {
-                closestObject = repairableObject.gameObject;
-                closestDistance = distance;
-            } 
+                float distance = Vector2.Distance(repairableObject.transform.position, position);
+                if (distance < closestDistance)
+                {
+                    closestObject = repairableObject.gameObject;
+                    closestDistance = distance;
+                }
+            }
         }
         return closestObject;
     }
@@ -41,7 +53,7 @@ public class RepairableManager : MonoBehaviour
         GameObject closestObject = null;
         foreach (RepairableObject repairableObject in objectsList.list)
         {
-            if(Mathf.Abs(repairableObject.transform.position.y - position.y) < 1)
+            if(!repairableObject.IsDestoyed() && Mathf.Abs(repairableObject.transform.position.y - position.y) < 1)
             {
                 float distance = Vector2.Distance(repairableObject.transform.position,position);
                 if(distance < closestDistance)
