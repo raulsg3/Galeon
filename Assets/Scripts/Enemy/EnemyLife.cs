@@ -56,7 +56,6 @@ public class EnemyLife : MonoBehaviour {
     public void EnemyDestroyedAnimEnd()
     {
         Destroy(this.gameObject);
-        
     }
 }
 
