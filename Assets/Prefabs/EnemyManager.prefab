@@ -50,7 +50,6 @@ MonoBehaviour:
   startWaitingTime: 1
   enemyAttack: {fileID: 633280250651379727, guid: c973bff64ab63fa43831b34a835fad16,
     type: 3}
-  enemyDestroy: {fileID: 117212, guid: 48437af4cfffcc34eae1f9d4860d9bf4, type: 3}
+  enemyDestroy: {fileID: 633280250651379727, guid: 16092d0ce8adc384abb804668a6f01a4,
+    type: 3}
   maxEnemies: 10
-  enemyWalkAnimator: {fileID: 0}
-  enemyActionAnimator: {fileID: 0}

@@ -16,8 +16,8 @@ public class EnemyMoveRepairable : MonoBehaviour
     private float accAttackTime = 0.0f;
 
     void Start () {
-        //enemyWalkAnimator = this.transform.Find("Visual/Body").GetComponent<Animator>();
-        //enemyActionAnimator = this.transform.Find("Weapons").GetComponent<Animator>();
+        enemyWalkAnimator = this.transform.Find("Visual/Body").GetComponent<Animator>();
+        enemyActionAnimator = this.transform.Find("Weapons").GetComponent<Animator>();
     }
 	
 	void Update () {
@@ -32,6 +32,7 @@ public class EnemyMoveRepairable : MonoBehaviour
             directionVector.Normalize();
 
             transform.Translate(directionVector * speed * Time.deltaTime);
+            enemyWalkAnimator.SetBool("Walking", true);
         }
 
         if (destroying && target != null)
@@ -51,6 +52,13 @@ public class EnemyMoveRepairable : MonoBehaviour
             {
                 destroying = false;
             }
+            enemyWalkAnimator.SetBool("Walking", false);
+            
+        }
+
+        if(destroying)
+        {
+            enemyActionAnimator.SetTrigger("Attack");
         }
 	}
 
