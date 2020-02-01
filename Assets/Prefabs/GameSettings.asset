@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: GameSettings
   m_EditorClassIdentifier: 
   playerHorSpeed: 8
-  playerVerSpeed: 2
+  playerVerSpeed: 8
