@@ -7,7 +7,8 @@ public class RepairableObject : MonoBehaviour
     public GameObject feedbackGO;
 
     public int currentHP = 3;
-    private int maxHP = 3 ;
+    [HideInInspector]
+    public int maxHP = 3 ;
 
     private float currentRepairCooldown = 0;
     private float cooldownBetweenRepair = 1f;

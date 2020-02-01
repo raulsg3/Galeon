@@ -15,8 +15,7 @@ public class RepairableManager : MonoBehaviour
     #endregion
 
     public RepairableObjectListSO objectsList;
-
-    public int GetAlivedObjects()
+    public int GetAlivedObjectsCount()
     {
         int aliveObjects = 0;
         for (int i = 0; i < objectsList.list.Count; i++)
@@ -28,7 +27,30 @@ public class RepairableManager : MonoBehaviour
         }
         return aliveObjects;
     }
+    public ShipState GetShipState()
+    {
+        ShipState shipState;
+        shipState.repairableObjectCount = 0;
+        shipState.repairableObjectDestroyedCount = 0;
+        shipState.repairableObjectMidLifeCount = 0;
+        shipState.repairableObjectFullLifeCount = 0;
 
+        for (int i = 0; i < objectsList.list.Count; i++)
+        {
+            shipState.repairableObjectCount++;
+            RepairableObject repairableObject = objectsList.list[i];
+            if(repairableObject.IsDestoyed())
+            {
+                ++shipState.repairableObjectDestroyedCount;
+            }else if (repairableObject.IsAtFullHealth())
+            {
+                ++shipState.repairableObjectFullLifeCount;
+            }else{
+                ++shipState.repairableObjectMidLifeCount;
+            }
+        }
+        return shipState;
+    }
     public GameObject GetClosestObject(Vector3 position)
     {
         float closestDistance = Mathf.Infinity;
@@ -66,4 +88,10 @@ public class RepairableManager : MonoBehaviour
         if(closestObject == null) Debug.Log("There arent any objects on your floor");
         return closestObject;
     }
+}
+public struct ShipState{
+    public int repairableObjectCount;
+    public int repairableObjectDestroyedCount;
+    public int repairableObjectMidLifeCount;
+    public int repairableObjectFullLifeCount;
 }
