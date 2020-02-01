@@ -12,9 +12,15 @@ public class EnemyMoveFollow : MonoBehaviour
 	}
 	
 	void Update () {
-        Vector3 directionVector = player.transform.position - transform.position;
-        directionVector.Normalize();
+        if (Mathf.Abs(player.transform.position.x - transform.position.x) > player.GetComponent<PlayerData>().width)
+        {
+            float direction = player.transform.position.x - transform.position.x;
+            Vector3 directionVector = new Vector3(direction, 0, 0);
 
-        transform.Translate(directionVector * speed * Time.deltaTime);
+            //Vector3 directionVector = player.transform.position - transform.position;
+            directionVector.Normalize();
+
+            transform.Translate(directionVector * speed * Time.deltaTime);
+        }
 	}
 }
