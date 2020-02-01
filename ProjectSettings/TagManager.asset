@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - EnemySpawnPoints
+  - ObjectToRepair
+  - Ladder
+  - EnemyManager
+  - Enemy
+  - Enemies
   layers:
   - Default
   - TransparentFX
