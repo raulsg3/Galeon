@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 423106}
+  - component: {fileID: -8924104135309644901}
   m_Layer: 0
   m_Name: EnemyManager
   m_TagString: EnemyManager
@@ -30,3 +31,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-8924104135309644901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 141404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9db16f76ec753044ba662b62998c928, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numDecks: 3
+  spawnPoints: {fileID: 4252761209335618643, guid: df2cb1737e66a0a46b33bd3dad3e9147,
+    type: 3}
+  waitingTime: 1
+  startWaitingTime: 1
+  enemyAttack: {fileID: 117212, guid: 574390c6ddc6c234e85b1948dc223c58, type: 3}
+  enemyDestroy: {fileID: 117212, guid: 574390c6ddc6c234e85b1948dc223c58, type: 3}
