@@ -10,6 +10,8 @@ TagManager:
   - EnemyManager
   - Enemy
   - Enemies
+  - Stairs
+  - Sword
   layers:
   - Default
   - TransparentFX
