@@ -14,6 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerHorSpeed: 8
   playerVerSpeed: 8
+  pistolCooldown: 1
+  swordCooldown: 0.1
+  playerMaxHealth: 5
   bulletSpeed: 15
   shootRecoil: 2
   stopTime: 0.25
+  damagePerMidObject: 0.5
+  damagePerDestroyed: 1
+  maxEnemies: 15
+  waitingTime: 6
+  startWaitingTime: 6
+  numDecks: 3

@@ -18,6 +18,8 @@ public class GameSettingsSO : ScriptableObject
     [Header("Ship damage")]
     public float damagePerMidObject = 0.5f;
     public float damagePerDestroyed = 1;
+    [Header("Eneny feedabck")]
+    public float enemyFeedbackSpeed = 1f;
     [Header("Eneny manager")]
     //Número máximo de enemigos al mismo tiempo
     public int maxEnemies = 15;

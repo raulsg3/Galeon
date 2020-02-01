@@ -8,13 +8,22 @@ public class EnemyLife : MonoBehaviour {
     public float enemyScore = 100f;
 
     public GameObject dieParticles;
-
-
+    public SpriteRenderer visualSprite;
+    float feedbackProgress = 1f;
+    public GameSettingsSO gameSettings;
     void OnTriggerEnter2D(Collider2D other)
     {
         if(other.tag == Tags.Sword)
         {
             Damage(34f);
+        }
+    }
+    void Update()
+    {
+        if(feedbackProgress < 1)
+        {
+            feedbackProgress += Time.deltaTime * gameSettings.enemyFeedbackSpeed;
+            visualSprite.color = Color.Lerp(Color.red,Color.white,feedbackProgress);
         }
     }
 
@@ -23,7 +32,7 @@ public class EnemyLife : MonoBehaviour {
     {
         // Recibe el daño
         health -= damage;
-
+        feedbackProgress = 0f;
         // Comprueba
         if (health <= 0.0f)
         {

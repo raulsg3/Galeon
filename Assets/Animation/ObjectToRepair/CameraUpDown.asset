@@ -45,4 +45,4 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  animSpeed: 0.8
+  animSpeed: 0.5
