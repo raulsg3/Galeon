@@ -179,10 +179,8 @@ public class EnemyManager : MonoBehaviour
         {
             case Attack.Attack:
                 return enemyAttack;
-                break;
             default:
                 return enemyDestroy;
-                break;
         }
     }
 
@@ -232,127 +230,4 @@ public class EnemyManager : MonoBehaviour
         //foreach (GameObject destroyable in enemies)
         //    Destroy(destroyable);
     }
-
-    /*
-    // Genera una oleada de tres enemigos en paralelo o en línea
-    void GenerateWaveThreeEnemies(MovementType movementType, AttackType attackType, bool line = false)
-    {
-        // Tipo de enemigo
-        GameObject enemy = GetEnemyFromAttackType(attackType);
-
-        // Posición de cada enemigo
-        Vector3[] enemiesPosition = new Vector3[3];
-
-        if (line)
-        {
-            // Enemigos en línea
-            float xRndPosition = GetRandomPosition_X();
-            enemiesPosition[0] = new Vector3(xRndPosition, Y_MAX, 0.0f);
-            enemiesPosition[1] = new Vector3(xRndPosition, Y_MAX + Y_MIN_DIST, 0.0f);
-            enemiesPosition[2] = new Vector3(xRndPosition, Y_MAX + Y_MIN_DIST * 2, 0.0f);
-        }
-        else
-        {
-            // Enemigos en paralelo
-            float xCenterPosition = GetCenterPosition_X();
-            float xRndDistance = Random.Range(X_MIN_DIST, GetHalfDistance_X());
-            enemiesPosition[0] = new Vector3(xCenterPosition, Y_MAX, 0.0f);
-            enemiesPosition[1] = new Vector3(xCenterPosition - xRndDistance, Y_MAX + Y_MIN_DIST, 0.0f);
-            enemiesPosition[2] = new Vector3(xCenterPosition + xRndDistance, Y_MAX + Y_MIN_DIST * 2, 0.0f);
-        }
-
-        // Creación de los enemigos
-        InstantiateEnemy(enemy, enemiesPosition[0], movementType, attackType);
-        InstantiateEnemy(enemy, enemiesPosition[1], movementType, attackType);
-        InstantiateEnemy(enemy, enemiesPosition[2], movementType, attackType);
-    }
-
-    // Genera una oleada de cinco enemigos en cuña
-    void GenerateWaveCone(MovementType movementType, AttackType attackType)
-    {
-        // Tipo de enemigo
-        GameObject enemy = GetEnemyFromAttackType(attackType);
-
-        float xCenterPosition = GetCenterPosition_X();
-        float xRndDistance = Random.Range(X_MIN_DIST, GetHalfDistance_X() / 2);
-
-        InstantiateEnemy(enemy, new Vector3(xCenterPosition, Y_MAX, 0.0f), movementType, attackType);
-        InstantiateEnemy(enemy, new Vector3(xCenterPosition - xRndDistance, Y_MAX + Y_MIN_DIST, 0.0f), movementType, attackType);
-        InstantiateEnemy(enemy, new Vector3(xCenterPosition + xRndDistance, Y_MAX + Y_MIN_DIST, 0.0f), movementType, attackType);
-        InstantiateEnemy(enemy, new Vector3(xCenterPosition - xRndDistance * 2, Y_MAX + Y_MIN_DIST * 2, 0.0f), movementType, attackType);
-        InstantiateEnemy(enemy, new Vector3(xCenterPosition + xRndDistance * 2, Y_MAX + Y_MIN_DIST * 2, 0.0f), movementType, attackType);
-    }
-
-    // Genera una oleada de cinco enemigos en escalera
-    void GenerateWaveStairs(MovementType movementType, AttackType attackType, bool startingLeft)
-    {
-        // Tipo de enemigo
-        GameObject enemy = GetEnemyFromAttackType(attackType);
-
-        float xCenterPosition = GetCenterPosition_X();
-        float xRndDistance = Random.Range(X_MIN_DIST, GetHalfDistance_X() / 2);
-
-        float[] enemiesSpawnY = new float[5];
-        float stairsFactorInclination = 1.0f;
-
-        for (int i = 0; i < 5; ++i)
-            enemiesSpawnY[i] = Y_MAX + Y_MIN_DIST * (startingLeft ? 4 - i : i) * stairsFactorInclination;
-
-        InstantiateEnemy(enemy, new Vector3(xCenterPosition - xRndDistance * 2, enemiesSpawnY[0], 0.0f), movementType, attackType);
-        InstantiateEnemy(enemy, new Vector3(xCenterPosition - xRndDistance, enemiesSpawnY[1], 0.0f), movementType, attackType);
-        InstantiateEnemy(enemy, new Vector3(xCenterPosition, enemiesSpawnY[2], 0.0f), movementType, attackType);
-        InstantiateEnemy(enemy, new Vector3(xCenterPosition + xRndDistance, enemiesSpawnY[3], 0.0f), movementType, attackType);
-        InstantiateEnemy(enemy, new Vector3(xCenterPosition + xRndDistance * 2, enemiesSpawnY[4], 0.0f), movementType, attackType);
-    }
-
-    // Genera una oleada compuesta por dos enemigos rastreadores en paralelo
-    void GenerateWaveTwoHunters()
-    {
-        float xCenterPosition = GetCenterPosition_X();
-        float xRndDistance = Random.Range(X_MIN_DIST, GetHalfDistance_X());
-
-        InstantiateEnemy(enemyHunter, new Vector3(xCenterPosition - xRndDistance, Y_MAX, 0.0f), MovementType.Follow, AttackType.NoAttack);
-        InstantiateEnemy(enemyHunter, new Vector3(xCenterPosition + xRndDistance, Y_MAX, 0.0f), MovementType.Follow, AttackType.NoAttack);
-    }
-
-    // Genera una oleada compuesta por tres enemigos rastreadores en línea
-    void GenerateWaveThreeHunters()
-    {
-        float xRndPosition = GetRandomPosition_X();
-
-        InstantiateEnemy(enemyHunter, new Vector3(xRndPosition, Y_MAX, 0.0f), MovementType.Follow, AttackType.NoAttack);
-        InstantiateEnemy(enemyHunter, new Vector3(xRndPosition, Y_MAX + Y_MIN_DIST, 0.0f), MovementType.Follow, AttackType.NoAttack);
-        InstantiateEnemy(enemyHunter, new Vector3(xRndPosition, Y_MAX + Y_MIN_DIST * 2, 0.0f), MovementType.Follow, AttackType.NoAttack);
-    }
-
-    // Genera una oleada compuesta por dos líneas de enemigos
-    void GenerateWaveTwoSides(MovementType movementType, AttackType attackType)
-    {
-        // Tipo de enemigo
-        GameObject enemy = GetEnemyFromAttackType(attackType);
-
-        float xCenterPosition = GetCenterPosition_X();
-        float xRndDistance = Random.Range(X_MIN_DIST, GetHalfDistance_X());
-
-        InstantiateEnemy(enemy, new Vector3(xCenterPosition - xRndDistance, Y_MAX, 0.0f), movementType, attackType);
-        InstantiateEnemy(enemy, new Vector3(xCenterPosition - xRndDistance, Y_MAX + Y_MIN_DIST, 0.0f), movementType, attackType);
-        
-        InstantiateEnemy(enemy, new Vector3(xCenterPosition + xRndDistance, Y_MAX, 0.0f), movementType, attackType);
-        InstantiateEnemy(enemy, new Vector3(xCenterPosition + xRndDistance, Y_MAX + Y_MIN_DIST, 0.0f), movementType, attackType);
-    }
-
-    // Genera una oleada de cinco enemigos de diferente tipo
-    void GenerateWaveFiveMix()
-    {
-        float xCenterPosition = GetCenterPosition_X();
-        float xRndDistance = Random.Range(X_MIN_DIST, GetHalfDistance_X() / 2);
-
-        InstantiateEnemy(enemyVacuum, new Vector3(xCenterPosition - xRndDistance * 2, Y_MAX + Y_MIN_DIST, 0.0f), MovementType.Straight, AttackType.Shoot);
-        InstantiateEnemy(enemyVacuum, new Vector3(xCenterPosition, Y_MAX + Y_MIN_DIST, 0.0f), MovementType.Straight, AttackType.Shoot);
-        InstantiateEnemy(enemyVacuum, new Vector3(xCenterPosition + xRndDistance * 2, Y_MAX + Y_MIN_DIST, 0.0f), MovementType.Straight, AttackType.Shoot);
-        
-        InstantiateEnemy(enemyRoomba, new Vector3(xCenterPosition - xRndDistance, Y_MAX, 0.0f), MovementType.Sin, AttackType.NoAttack);
-        InstantiateEnemy(enemyRoomba, new Vector3(xCenterPosition + xRndDistance, Y_MAX, 0.0f), MovementType.Sin, AttackType.NoAttack);
-    }
-    */
 }
