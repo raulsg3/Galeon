@@ -37,7 +37,7 @@ public class EnemyManager : MonoBehaviour
     }
 
     //Puntos de aparición de enemigos
-    public GameObject spawnPoints;
+    private GameObject spawnPoints;
 
     private GameObject spawnPointsLeft;
     private GameObject spawnPointsRight;
@@ -73,6 +73,7 @@ public class EnemyManager : MonoBehaviour
 
     void Start()
     {
+        spawnPoints = GameObject.FindGameObjectWithTag(Tags.EnemySpawnPoints);
         spawnPointsLeft = spawnPoints.transform.Find("Left").gameObject;
         spawnPointsRight = spawnPoints.transform.Find("Right").gameObject;
 
@@ -202,7 +203,7 @@ public class EnemyManager : MonoBehaviour
     private void InstantiateEnemy(GameObject enemyPrefab, Vector2 enemyPosition, Attack attack)
     {
         //Instancia
-        GameObject enemyInstance = (GameObject)Instantiate(enemyPrefab, enemyPosition, Quaternion.identity, enemiesGameObject.transform);
+        GameObject enemyInstance = (GameObject)Instantiate(enemyPrefab, enemyPosition, Quaternion.identity/*, enemiesGameObject.transform*/);
 
         //Componentes
         SetAttack(enemyInstance, attack); //Ataque

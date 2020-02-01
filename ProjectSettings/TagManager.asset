@@ -15,6 +15,7 @@ TagManager:
   - Bullet
   - Sword
   - EnemySword
+  - FxTemporaire
   layers:
   - Default
   - TransparentFX
@@ -24,7 +25,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Enemy
   - 
   - 
   - 
