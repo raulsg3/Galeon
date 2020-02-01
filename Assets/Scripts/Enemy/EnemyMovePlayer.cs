@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyMoveFollow : MonoBehaviour
+public class EnemyMovePlayer : MonoBehaviour
 {
     private GameObject player;
 
@@ -15,9 +15,8 @@ public class EnemyMoveFollow : MonoBehaviour
         if (Mathf.Abs(player.transform.position.x - transform.position.x) > player.GetComponent<PlayerData>().width)
         {
             float direction = player.transform.position.x - transform.position.x;
-            Vector3 directionVector = new Vector3(direction, 0, 0);
 
-            //Vector3 directionVector = player.transform.position - transform.position;
+            Vector3 directionVector = new Vector3(direction, 0, 0);
             directionVector.Normalize();
 
             transform.Translate(directionVector * speed * Time.deltaTime);
