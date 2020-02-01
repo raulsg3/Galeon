@@ -12,16 +12,6 @@ GameObject:
   m_Layer: 0
   m_Name: Visual
   m_TagString: Untagged
-  - component: {fileID: 442686}
-  - component: {fileID: 21219692}
-  - component: {fileID: 5051784}
-  - component: {fileID: 9553080}
-  - component: {fileID: 8206792}
-  - component: {fileID: 7322042084700385666}
-  - component: {fileID: 5793525897273726158}
-  m_Layer: 8
-  m_Name: EnemyDestroy
-  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
