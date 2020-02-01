@@ -46,10 +46,13 @@ public class EnemyManager : MonoBehaviour
     private bool endGame = false;
 
     //Tiempo de espera entre enemigos
-    public float waitingTime = 1.0f;
+    public float waitingTime = 6.0f;
 
     //Tiempo de espera al iniciar el juego
-    public float startWaitingTime = 5.0f;
+    public float startWaitingTime = 6.0f;
+
+    //Próxima oleada
+    private int nextWaveIndex = 0;
 
     //Prefabs de los enemigos
     public GameObject enemyAttack;
@@ -59,7 +62,7 @@ public class EnemyManager : MonoBehaviour
     private GameObject enemiesGameObject;
 
     //Número máximo de enemigos al mismo tiempo
-    public int maxEnemies = 10;
+    public int maxEnemies = 15;
 
     #region Singleton
     public static EnemyManager enemyManagerInstance;
@@ -105,15 +108,12 @@ public class EnemyManager : MonoBehaviour
     {
         if (CanGenerateNextWave())
         {
-            //Número de enemigos en cada lado
-            int numLeftEnemies = 0;
-            int numRightEnemies = 0;
+            nextWaveIndex++;
+            int maxSideEnemies = nextWaveIndex;
 
-            while (numLeftEnemies == 0 && numRightEnemies == 0)
-            {
-                numLeftEnemies = Random.Range(0, numDecks + 1);
-                numRightEnemies = Random.Range(0, numDecks + 1);
-            }
+            //Número de enemigos en cada lado
+            int numLeftEnemies = Random.Range(1, nextWaveIndex + 1);
+            int numRightEnemies = Random.Range(1, nextWaveIndex + 1);
 
             //Enemigos lado izquierdo
             if (numLeftEnemies > 0)
