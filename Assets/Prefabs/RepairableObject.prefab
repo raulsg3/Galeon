@@ -513,11 +513,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   feedbackGO: {fileID: 7295382849942391872}
   currentHP: 0
+  maxHP: 3
   fullHeatlthGO: {fileID: 7295382850395235959}
   midHealthGO: {fileID: 7295382849370255512}
   destroyedGO: {fileID: 7295382850251739555}
   repairableObjectListSO: {fileID: 11400000, guid: 0b220f2d4a16681429e627e2f4d99a95,
     type: 2}
+  OnDamageParticles: {fileID: 100006, guid: d22808fb4d0b046408929feef1bd0a15, type: 3}
 --- !u!61 &7295382850365108986
 BoxCollider2D:
   m_ObjectHideFlags: 0

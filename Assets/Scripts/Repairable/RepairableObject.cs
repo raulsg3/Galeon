@@ -16,6 +16,8 @@ public class RepairableObject : MonoBehaviour
     public GameObject midHealthGO;
     public GameObject destroyedGO;
     public RepairableObjectListSO repairableObjectListSO;
+
+    public GameObject OnDamageParticles;
     void Awake()
     {
         currentRepairCooldown = cooldownBetweenRepair;
@@ -52,6 +54,7 @@ public class RepairableObject : MonoBehaviour
     {
         if(!IsDestoyed())
         {
+            Instantiate(OnDamageParticles,transform.position,Quaternion.identity);
             --currentHP; 
             if( currentHP < 0) currentHP = 0;
             UpdateVisualByHealth();

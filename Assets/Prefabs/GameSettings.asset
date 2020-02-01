@@ -24,6 +24,6 @@ MonoBehaviour:
   damagePerDestroyed: 1
   enemyFeedbackSpeed: 1
   maxEnemies: 15
-  waitingTime: 6
-  startWaitingTime: 6
+  waitingTime: 1
+  startWaitingTime: 1
   numDecks: 3
