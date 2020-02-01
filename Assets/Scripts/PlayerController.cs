@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public GameSettingsSO gameSettings;
     public Rigidbody2D m_rigidBody;
     bool bIsInsideStairCollider = false;
+    RepairableObject currentObjectToRepair;
 
     public Animator playerAnimator;
     public Animator weaponAnimator;
@@ -60,6 +61,10 @@ public class PlayerController : MonoBehaviour
             
         }
 
+        if(currentObjectToRepair != null)
+        {
+        }
+
         playerAnimator.SetBool("Walking", isWalking);
         
 
@@ -79,16 +84,28 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider2D)
     {
-        if(collider2D.CompareTag("Stairs"))
+        if(collider2D.CompareTag(Tags.Ladder))
         {
             bIsInsideStairCollider = true;
         } 
+        
+        if(collider2D.CompareTag(Tags.RepairableObject))
+        {
+            currentObjectToRepair = collider2D.GetComponent<RepairableObject>();
+        } 
+
     }
+ 
     void OnTriggerExit2D(Collider2D collider2D)
     {
-        if(collider2D.CompareTag("Stairs")) 
+        if(collider2D.CompareTag(Tags.Ladder)) 
         {
             bIsInsideStairCollider = false;
         }
+        
+        if(collider2D.CompareTag(Tags.RepairableObject))
+        {
+            currentObjectToRepair = null;
+        } 
     }
 }

@@ -8,4 +8,6 @@ public static class Tags {
     public static string Enemy = "Enemy";
     public static string EnemySpawnPoints = "EnemySpawnPoints";
     public static string Enemies = "Enemies";
+    public static string Ladder = "Stairs";
+    public static string RepairableObject = "ObjectToRepair";
 }

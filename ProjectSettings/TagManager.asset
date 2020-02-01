@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - EnemySpawnPoints
   - Enemies
+  - ObjectToRepair
   layers:
   - Default
   - TransparentFX
