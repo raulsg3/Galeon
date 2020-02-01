@@ -18,29 +18,74 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 1
-      outSlope: 1
+      inSlope: -0.072652936
+      outSlope: -0.072652936
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 0.33333334
+      outWeight: 0.9866617
     - serializedVersion: 3
-      time: 0.5066016
-      value: 1.0034964
-      inSlope: -0.026503205
-      outSlope: -0.026503205
-      tangentMode: 34
+      time: 0.14431204
+      value: 0.4160824
+      inSlope: 1.9746529
+      outSlope: 1.9746529
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
+      outWeight: 0.25240785
+    - serializedVersion: 3
+      time: 0.36493894
+      value: 0.890084
+      inSlope: 0.65771663
+      outSlope: 0.65771663
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.5473095
+    - serializedVersion: 3
+      time: 0.54251343
+      value: 0.94051385
+      inSlope: -0.22188088
+      outSlope: -0.22188088
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.73822826
+    - serializedVersion: 3
+      time: 0.7332666
+      value: 0.6876294
+      inSlope: -3.9093451
+      outSlope: -3.9093451
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.16328327
       outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.8524797
+      value: 0.2272325
+      inSlope: -0.9833697
+      outSlope: -0.9833697
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.6093873
+    - serializedVersion: 3
+      time: 0.9049354
+      value: 0.07410087
+      inSlope: -0.8958606
+      outSlope: -0.8958606
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 1
     - serializedVersion: 3
       time: 1
       value: 0
-      inSlope: 0.042284124
-      outSlope: 0.042284124
+      inSlope: 0.10229395
+      outSlope: 0.10229395
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
+      inWeight: 1
       outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
