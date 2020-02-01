@@ -22,11 +22,13 @@ public class PlayerController : MonoBehaviour
         {
             //Velocidad positiva
             velocidadEjeX = 1;
+            gameObject.transform.localScale = new Vector3(-1,1,1);
             isWalking = true;
         }
         else if (Input.GetKey(KeyCode.A))
         {
             //Velocidad negativa
+            gameObject.transform.localScale = new Vector3(1,1,1);
             velocidadEjeX = -1;
             isWalking = true;
         }
