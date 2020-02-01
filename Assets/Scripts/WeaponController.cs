@@ -10,7 +10,7 @@ public class WeaponController : MonoBehaviour
 
     public GameObject bulletPrefab;
     public GameObject spawnPosition;
-
+    public bool isRepairableEnemy;
     // Instaciate the bullet prefab
     void Shoot()
     {
@@ -38,5 +38,13 @@ public class WeaponController : MonoBehaviour
     void EndCut()
     {
         swordCollider.enabled = false;
+    }
+
+    public void SpawnWoodParticlesIfRepairableEnemy()
+    {
+        if(isRepairableEnemy)
+        {
+            Instantiate(gameSettings.OnDamageBoatParticles,transform.position,Quaternion.identity);
+        }
     }
 }

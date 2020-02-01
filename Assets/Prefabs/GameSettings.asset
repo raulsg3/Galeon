@@ -23,6 +23,8 @@ MonoBehaviour:
   damagePerMidObject: 0.5
   damagePerDestroyed: 1
   enemyFeedbackSpeed: 1
+  OnDamageBoatParticles: {fileID: 100006, guid: d22808fb4d0b046408929feef1bd0a15,
+    type: 3}
   maxEnemies: 15
   waitingTime: 6
   startWaitingTime: 6
