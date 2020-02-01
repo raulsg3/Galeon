@@ -5,6 +5,7 @@ using UnityEngine;
 public class WeaponController : MonoBehaviour
 {
     public GameObject player;
+    public GameSettingsSO gameSettings;
 
     public GameObject bulletPrefab;
     public GameObject spawnPosition;
@@ -17,6 +18,9 @@ public class WeaponController : MonoBehaviour
         bullet.transform.localScale = player.transform.localScale;
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         // Set velocity depending of the player's direction
-        rb.velocity = new Vector3(-10 * player.transform.localScale.x, 0, 0);
+        rb.velocity = new Vector3(-gameSettings.bulletSpeed * player.transform.localScale.x, 0, 0);
+        // Move backwards the player and stop it a while
+        player.GetComponent<Rigidbody2D>().velocity = new Vector3(gameSettings.shootRecoil * player.transform.localScale.x, 0, 0);
+        player.GetComponent<PlayerController>().currentStopTime = gameSettings.stopTime;
     }
 }

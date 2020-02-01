@@ -13,9 +13,13 @@ public class PlayerController : MonoBehaviour
     public Animator playerAnimator;
     public Animator weaponAnimator;
 
+    public float currentStopTime {get; set;} = 0f;
 
     void Update()
     {
+        // Este tiempo se establece desde el WeaponController, para parar al personaje tras un disparo
+        currentStopTime -= Time.deltaTime;
+
         float velocidadEjeX = 0 ; // -1 izq, 1 der, 0 quieto
         float velocidadEjeY = 0 ; // 
         bool isWalking = false;
@@ -67,6 +71,12 @@ public class PlayerController : MonoBehaviour
 
         playerAnimator.SetBool("Walking", isWalking);
         
+        // Stop the player X if needed
+        if(currentStopTime > 0)
+        {
+            velocidadEjeX = 0;
+            velocidadEjeY = 0;
+        }
 
         transform.Translate(new Vector2(Time.deltaTime * velocidadEjeX * gameSettings.playerHorSpeed,
                             Time.deltaTime * velocidadEjeY * gameSettings.playerVerSpeed));
