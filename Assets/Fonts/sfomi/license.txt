@@ -1,0 +1,21 @@
+https://www.ptless.org/sfomi/
+
+... is an in-game font family from The Secret of Monkey Island (1990) and Monkey Island 2: LeChuck's Revenge (1991). For every game there are two variants: one standard font with original character width and a refined version with optimized character width and kerning information. The fonts consist of the original set of characters plus newly designed ones like the euro sign and some ligatures ...
+
+font name (bold)	description
+The Secret Font of Monkey Island 1990	as seen in-game
+The Secret Font of Monkey Island 1990, refined	recommended for “daily” usage
+The Secret Font of Monkey Island 1991	as seen in-game
+The Secret Font of Monkey Island 1991, refined	recommended for “daily” usage
+
+some nerdy notes (:
+The font is best used with a pixel size of a multiple of 8 (such as 8, 16, 24, 32 etc...) to avoid anti-aliasing.
+
+For the ultimate correct retro display of this font you have to scale it vertically by 1.2 (that's the way those games were displayed back then). Of course you have to chose a bitmap size which supports at least rectangular “pixels” with a size of 5×6 pixels. The appropriate font size would be at least 40 pixels. With this font size, a “pixel” has a size of 5×5 pixels. The image then has to be scaled vertically by 1.2 which results in “pixels” with a size of 5×6 pixels. (Of course you can also use smaller font sizes, but anti-aliasing will occur.)
+
+The 1991 version was also used in later versions of The Secret of Monkey Island.
+
+If you want the italic ß as found in the enhanced CD version of The Secret of Monkey Island (german) please use the greek small beta.
+
+
+The Secret of Monkey Island font © 1990 Lucasfilm Games · Monkey Island 2: LeChuck's Revenge font © 1991 LucasArts
