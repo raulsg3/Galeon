@@ -5,6 +5,7 @@ using UnityEngine;
 public class WeaponController : MonoBehaviour
 {
     public GameObject player;
+    public BoxCollider2D swordCollider;
     public GameSettingsSO gameSettings;
 
     public GameObject bulletPrefab;
@@ -22,5 +23,20 @@ public class WeaponController : MonoBehaviour
         // Move backwards the player and stop it a while
         player.GetComponent<Rigidbody2D>().velocity = new Vector3(gameSettings.shootRecoil * player.transform.localScale.x, 0, 0);
         player.GetComponent<PlayerController>().currentStopTime = gameSettings.stopTime;
+    }
+
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        Debug.Log("ALGOOOOO");
+    }
+
+    void StartCut()
+    {
+        swordCollider.enabled = true;
+    }
+
+    void EndCut()
+    {
+        swordCollider.enabled = false;
     }
 }
