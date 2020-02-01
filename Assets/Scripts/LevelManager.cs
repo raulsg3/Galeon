@@ -66,7 +66,7 @@ public class LevelManager : MonoBehaviour
             levelTimeToEnd -= Time.deltaTime;
             feedbackLevel.value = (float)(timePerLevel[level] - levelTimeToEnd);
 
-            if (repairableManager.GetNotDestroyedObjectsCount() == 0)
+            if (repairableManager.GetAlivedObjects() == 0)
             {
                 LevelFailed();
             }

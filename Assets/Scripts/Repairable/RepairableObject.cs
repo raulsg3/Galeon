@@ -6,46 +6,77 @@ public class RepairableObject : MonoBehaviour
 {
     public GameObject feedbackGO;
 
-    bool isAlive = true;
     public int currentHP = 3;
-    public int maxHP = 3 ;
-
-    public void TakeDamage()
+    private int maxHP = 3 ;
+    public GameObject fullHeatlthGO;
+    public GameObject midHealthGO;
+    public GameObject destroyedGO;
+    public void UpdateVisualByHealth()
     {
-        if(isAlive)
-        {
-
-            --currentHP;
-            if(currentHP <= 0)
-            {
-                currentHP = 0;
-                RepairableObjectDestroyed();
-            }
+        fullHeatlthGO.SetActive(false);
+        midHealthGO.SetActive(false);
+        destroyedGO.SetActive(false);
+        if(currentHP == maxHP) fullHeatlthGO.SetActive(true);
+        else if(currentHP == 0) destroyedGO.SetActive(true);
+        else{
+            midHealthGO.SetActive(true);
         }
     }
 
+    void Awake()
+    {
+        currentHP = maxHP;
+        UpdateVisualByHealth();
+    }
+
+    [DebugButton]
+    public void TakeDamage()
+    {
+        if(!IsDestoyed())
+        {
+
+            --currentHP; 
+            if( currentHP < 0) currentHP = 0;
+            UpdateVisualByHealth();
+            if(currentHP <= 0)
+            {
+                // RepairableObjectDestroyed();
+            }
+        }
+    }
+    [DebugButton]
     public void GiveHealth()
     {
-        if(!isAlive)
+        if(!IsDestoyed())
         {
 
             ++currentHP;
+            if( currentHP > maxHP) currentHP = maxHP;
+            UpdateVisualByHealth();
             if(currentHP >= maxHP)
             {
                 currentHP = maxHP;
 
             }
         }
+    }   
+    
+    public bool IsAtFullHealth(){
+        return currentHP == maxHP;    
+    }
+    
+    public bool IsDestoyed(){
+        return currentHP == 0;    
     }
 
-    public void RepairableObjectDestroyed()
-    {
-        isAlive = false;
-    }
-    public void RepairableObjectResurrected()
-    {
-        isAlive = true;
-    }
+    // public void RepairableObjectDestroyed()
+    // {
+    //     isAlive = false;
+    // }
+    // public void RepairableObjectResurrected()
+    // {
+    //     isAlive = true;
+    // }
     public void SetActiveFeedback(bool status)
     {
         feedbackGO.SetActive(status);
@@ -55,7 +86,8 @@ public class RepairableObject : MonoBehaviour
     {
         if(collider2D.CompareTag(Tags.Player))
         {
-            SetActiveFeedback(true);
+            if(!IsDestoyed())
+                SetActiveFeedback(true);
         } 
     }
  

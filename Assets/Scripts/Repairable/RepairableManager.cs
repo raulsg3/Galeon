@@ -6,9 +6,17 @@ public class RepairableManager : MonoBehaviour
 {
     public List<RepairableObject> objectsList;
 
-    public int GetNotDestroyedObjectsCount()
+    public int GetAlivedObjects()
     {
-        return 4;
+        int aliveObjects = 0;
+        for (int i = 0; i < objectsList.Count; i++)
+        {
+            if(!objectsList[i].IsDestoyed())
+            {
+                ++aliveObjects;
+            }
+        }
+        return aliveObjects;
     }
 
     public GameObject GetClosestObject(Vector3 position)
