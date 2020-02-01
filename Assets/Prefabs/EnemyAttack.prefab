@@ -144,8 +144,9 @@ GameObject:
   - component: {fileID: 396529499}
   - component: {fileID: 4938345426527324381}
   - component: {fileID: 392575516958637998}
+  - component: {fileID: 9105663908223552657}
   m_Layer: 8
-  m_Name: Enemy
+  m_Name: EnemyAttack
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -218,7 +219,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.00904876, y: -0.048260093}
+  m_Offset: {x: -0.1315203, y: -0.048260093}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -229,8 +230,25 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6802771, y: 0.85521984}
+  m_Size: {x: 0.96141523, y: 0.85521984}
   m_EdgeRadius: 0
+--- !u!114 &9105663908223552657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 633280250651379727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea0a7d4f606ef1e44975bbcd652b137c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameSettings: {fileID: 11400000, guid: d8f3b228e622e0044b875a77b80446d9, type: 2}
+  enemyWalkAnimator: {fileID: 0}
+  enemyActionAnimator: {fileID: 0}
+  speed: 5
+  attackTime: 5
 --- !u!1 &2623826271000879771
 GameObject:
   m_ObjectHideFlags: 0
@@ -303,6 +321,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 6350024390783877999, guid: 23a9e4a29c8551a40aae169caca7cfc7,
     type: 3}
   spawnPosition: {fileID: 0}
+  isRepairableEnemy: 0
 --- !u!1 &3078697594535133642
 GameObject:
   m_ObjectHideFlags: 0
@@ -563,7 +582,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.012997948, y: 0}
+  m_Offset: {x: -0.16579041, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -574,5 +593,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.39801395, y: 1}
+  m_Size: {x: 0.7035988, y: 1}
   m_EdgeRadius: 0

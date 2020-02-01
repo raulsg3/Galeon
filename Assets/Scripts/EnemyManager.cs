@@ -194,10 +194,7 @@ public class EnemyManager : MonoBehaviour
     private void InstantiateEnemy(GameObject enemyPrefab, Vector2 enemyPosition, Attack attack)
     {
         //Instancia
-        GameObject enemyInstance = (GameObject)Instantiate(enemyPrefab, enemyPosition, Quaternion.identity/*, enemiesGameObject.transform*/);
-
-        //Componentes
-        SetAttack(enemyInstance, attack); //Ataque
+        GameObject enemyInstance = (GameObject)Instantiate(enemyPrefab, enemyPosition, Quaternion.identity, enemiesGameObject.transform);
     }
 
     //Añade el componente de ataque a un enemigo

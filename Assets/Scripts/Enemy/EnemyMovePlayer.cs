@@ -3,6 +3,8 @@ using System.Collections;
 
 public class EnemyMovePlayer : MonoBehaviour
 {
+    public GameSettingsSO gameSettings;
+
     private GameObject player;
     private bool attacking = false;
 

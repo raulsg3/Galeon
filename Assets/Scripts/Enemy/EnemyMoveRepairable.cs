@@ -3,6 +3,8 @@ using System.Collections;
 
 public class EnemyMoveRepairable : MonoBehaviour
 {
+    public GameSettingsSO gameSettings;
+
     private RepairableObject target = null;
     private bool destroying = false;
 
@@ -26,8 +28,6 @@ public class EnemyMoveRepairable : MonoBehaviour
 
         if (!destroying && target != null && !target.IsDestoyed())
         {
-            enemyWalkAnimator.SetBool("Walking", true);
-
             float direction = target.transform.position.x - transform.position.x;
 
             Vector3 directionVector = new Vector3(direction, 0, 0);
@@ -35,7 +35,8 @@ public class EnemyMoveRepairable : MonoBehaviour
 
             transform.Translate(directionVector * speed * Time.deltaTime);
 
-            if(directionVector.x > 0){
+            enemyWalkAnimator.SetBool("Walking", true);
+            if (directionVector.x > 0){
                 transform.localScale = new Vector3(-1,1, 1);
             }else if (directionVector.x < 0) {
                 transform.localScale = new Vector3(1, 1, 1);
@@ -44,8 +45,6 @@ public class EnemyMoveRepairable : MonoBehaviour
 
         if (destroying && target != null)
         {
-            enemyWalkAnimator.SetBool("Walking", false);
-
             if (!target.IsDestoyed())
             {
                 accAttackTime += Time.deltaTime;
@@ -61,6 +60,8 @@ public class EnemyMoveRepairable : MonoBehaviour
             {
                 destroying = false;
             }
+
+            enemyWalkAnimator.SetBool("Walking", false);
         }
 
         if(destroying)
@@ -81,11 +82,5 @@ public class EnemyMoveRepairable : MonoBehaviour
     {
         if (collider2D.CompareTag(Tags.RepairableObject))
             destroying = true;
-    }
-
-    void OnTriggerExit2D(Collider2D collider2D)
-    {
-        if (collider2D.CompareTag(Tags.RepairableObject))
-            destroying = false;
     }
 }
