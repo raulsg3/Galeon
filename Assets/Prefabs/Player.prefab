@@ -330,6 +330,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70353511ff8c82a4abd2c56b58829d9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 633280250651379727}
   bulletPrefab: {fileID: 6350024390783877999, guid: 23a9e4a29c8551a40aae169caca7cfc7,
     type: 3}
   spawnPosition: {fileID: 315314814987438407}
@@ -508,7 +509,7 @@ GameObject:
   - component: {fileID: 5431996424267380986}
   m_Layer: 0
   m_Name: BasicCollider
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
