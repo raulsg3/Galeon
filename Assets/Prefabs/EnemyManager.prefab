@@ -43,11 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9db16f76ec753044ba662b62998c928, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numDecks: 3
-  waitingTime: 6
-  startWaitingTime: 6
+  gameSettings: {fileID: 11400000, guid: d8f3b228e622e0044b875a77b80446d9, type: 2}
   enemyAttack: {fileID: 633280250651379727, guid: c973bff64ab63fa43831b34a835fad16,
     type: 3}
   enemyDestroy: {fileID: 633280250651379727, guid: 16092d0ce8adc384abb804668a6f01a4,
     type: 3}
-  maxEnemies: 15

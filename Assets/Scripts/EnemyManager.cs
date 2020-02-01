@@ -18,8 +18,8 @@ public class EnemyManager : MonoBehaviour
         Third
     }
 
-    //Número de cubiertas del nivel
-    public int numDecks = 3;
+
+    public GameSettingsSO gameSettings;
 
     //Tipos de ataque de los enemigos
     private enum Attack
@@ -45,12 +45,6 @@ public class EnemyManager : MonoBehaviour
     //Fin del juego
     private bool endGame = false;
 
-    //Tiempo de espera entre enemigos
-    public float waitingTime = 6.0f;
-
-    //Tiempo de espera al iniciar el juego
-    public float startWaitingTime = 6.0f;
-
     //Próxima oleada
     private int nextWaveIndex = 0;
 
@@ -60,9 +54,6 @@ public class EnemyManager : MonoBehaviour
 
     //GameObject de la escena donde instanciar los enemigos
     private GameObject enemiesGameObject;
-
-    //Número máximo de enemigos al mismo tiempo
-    public int maxEnemies = 15;
 
     #region Singleton
     public static EnemyManager enemyManagerInstance;
@@ -91,7 +82,7 @@ public class EnemyManager : MonoBehaviour
     //Corrutina de generación de enemigos
     IEnumerator GenerateEnemies()
     {
-        yield return new WaitForSeconds(startWaitingTime);
+        yield return new WaitForSeconds(gameSettings.startWaitingTime);
 
         while (!endGame)
         {
@@ -99,7 +90,7 @@ public class EnemyManager : MonoBehaviour
             GenerateNextWave();
 
             //Espera entre oleadas de enemigos
-            yield return new WaitForSeconds(waitingTime);
+            yield return new WaitForSeconds(gameSettings.waitingTime);
         }
     }
 
@@ -150,13 +141,13 @@ public class EnemyManager : MonoBehaviour
     //Comprueba que no hayamos llegado al límite de enemigos
     bool CanGenerateNextWave()
     {
-        return enemiesGameObject.transform.childCount < maxEnemies;
+        return enemiesGameObject.transform.childCount < gameSettings.maxEnemies;
     }
 
     //Devuelve una cubierta aleatoria
     private Deck GenerateRandomDeck()
     {
-        return (Deck)Random.Range(0, numDecks);
+        return (Deck)Random.Range(0, gameSettings.numDecks);
     }
 
     //Devuelve un tipo de ataque aleatorio
