@@ -14,3 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerHorSpeed: 8
   playerVerSpeed: 8
+  bulletSpeed: 15
+  shootRecoil: 2
+  stopTime: 0.25
