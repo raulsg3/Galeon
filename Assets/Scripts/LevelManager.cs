@@ -64,7 +64,16 @@ public class LevelManager : MonoBehaviour
         enemyManager.EndGame();
         yield return new WaitForSeconds(2f);
 
-        SceneManager.LoadScene("Main");
+        if(PersistantInfoSingleton.Instance.currentLevel >= levelsList.list.Count)
+        {
+            PersistantInfoSingleton.Instance.currentLevel = 0;
+            Debug.Log("Game completed");
+            SceneManager.LoadScene("GameFinished");
+
+        }else
+        {
+            SceneManager.LoadScene("Main");
+        }
         // StartLevel(PersistantInfoSingleton.Instance.currentLevel);
         //Calls to stop other managers
     }
