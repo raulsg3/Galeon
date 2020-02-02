@@ -52,13 +52,14 @@ MonoBehaviour:
   waterGrid: {fileID: 0}
   player: {fileID: 0}
   playerController: {fileID: 0}
+  music: {fileID: 2575951927729055571, guid: 5c15eb331c0afef498a19351e82a11d7, type: 3}
   levelTimeToEnd: 0
   isGameOn: 0
   waterMovement: 0
   waterInitialPos: {x: 0, y: -9, z: 0}
+  waterFinalPos: {x: 0, y: 6.3, z: 0}
   levelsList: {fileID: 11400000, guid: d44057b22d6746041996547abeb2cbac, type: 2}
-  currentLevelSettings: {fileID: 11400000, guid: 200b5bde0f2a326429fe95cdfcee4510,
-    type: 2}
+  currentLevelSettings: {fileID: 0}
   levelIntroUI: {fileID: 0}
   levelGameOverUI: {fileID: 0}
   levelCompletedUI: {fileID: 0}

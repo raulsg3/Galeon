@@ -12,6 +12,8 @@ public class EnemyLife : MonoBehaviour {
     float feedbackProgress = 1f;
     public GameSettingsSO gameSettings;
 
+    public GameObject deadSoundPrefab;
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if(other.tag == Tags.Sword)
@@ -68,6 +70,8 @@ public class EnemyLife : MonoBehaviour {
     public void EnemyDestroyedAnimEnd()
     {
         Instantiate(dieParticles,transform.position,Quaternion.identity);
+        Instantiate(deadSoundPrefab,transform.position,Quaternion.identity);
+        
         Destroy(this.gameObject);
     }
 }

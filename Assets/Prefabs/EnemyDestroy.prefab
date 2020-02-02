@@ -206,6 +206,8 @@ MonoBehaviour:
   dieParticles: {fileID: 100000, guid: 3b9bac949dbca6048ac36631722dce4b, type: 3}
   visualSprite: {fileID: 36888937}
   gameSettings: {fileID: 11400000, guid: d8f3b228e622e0044b875a77b80446d9, type: 2}
+  deadSoundPrefab: {fileID: 5746143452823191577, guid: 484cee36e66cedf479214edbe3e1b241,
+    type: 3}
 --- !u!61 &392575516958637998
 BoxCollider2D:
   m_ObjectHideFlags: 0
