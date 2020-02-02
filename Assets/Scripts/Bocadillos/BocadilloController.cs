@@ -15,7 +15,7 @@ public class BocadilloController : MonoBehaviour
     void Start()
     {
         pivotGO.SetActive(false);
-        if(Random.Range(0,100) < 20){
+        if(Random.Range(0,100) < 30){
             bEnemyHasBocadillo = true;
             showBocadilloCooldown = Random.Range(1,5);
         }
@@ -47,7 +47,7 @@ public class BocadilloController : MonoBehaviour
     }
     IEnumerator C_HideBocadillo()
     {
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(5f);
         pivotGO.SetActive(false);
     }
 
