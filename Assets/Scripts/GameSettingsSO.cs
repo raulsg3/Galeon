@@ -13,6 +13,8 @@ public class GameSettingsSO : ScriptableObject
 
     public float bulletSpeed = 15f;
     public float shootRecoil = 2.5f;
+    public float damageRecoilAttack = 4.0f;
+    public float damageRecoilDestroy = 2.0f;
     public float stopTime = 0.3f;
 
     [Header("Ship damage")]
