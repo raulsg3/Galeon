@@ -844,6 +844,7 @@ MonoBehaviour:
   frasesListSO: {fileID: 11400000, guid: 5024bef50d09c93479ddedf717ab8766, type: 2}
   pivotGO: {fileID: 8361824421702415492}
   textInBocadillo: {fileID: 7087339378279065247}
+  parent: {fileID: 633280250651379724}
 --- !u!1 &8361824421702415492
 GameObject:
   m_ObjectHideFlags: 0

@@ -635,7 +635,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8251326568570788017
 Transform:
   m_ObjectHideFlags: 0
@@ -756,6 +756,7 @@ MonoBehaviour:
   frasesListSO: {fileID: 11400000, guid: 7e4368fd61bd1014f897f23ddf10afbf, type: 2}
   pivotGO: {fileID: 3930025142252900307}
   textInBocadillo: {fileID: 5166725390007479313}
+  parent: {fileID: 633280250651379724}
 --- !u!1 &8373291548932615626
 GameObject:
   m_ObjectHideFlags: 0
