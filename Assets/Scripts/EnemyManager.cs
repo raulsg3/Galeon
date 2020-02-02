@@ -19,7 +19,7 @@ public class EnemyManager : MonoBehaviour
     }
 
 
-    public GameSettingsSO gameSettings;
+    public GameLevelSettingsSO gameSettings;
 
     //Tipos de ataque de los enemigos
     private enum Attack

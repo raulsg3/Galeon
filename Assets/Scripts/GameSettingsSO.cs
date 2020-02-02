@@ -22,15 +22,5 @@ public class GameSettingsSO : ScriptableObject
     public float enemyFeedbackSpeed = 1f;
     public GameObject OnDamageBoatParticles;
 
-    [Header("Eneny manager")]
-    //Número máximo de enemigos al mismo tiempo
-    public int maxEnemies = 15;
-    //Tiempo de espera entre enemigos
-    public float waitingTime = 6.0f;
-
-    //Tiempo de espera al iniciar el juego
-    public float startWaitingTime = 6.0f;
-
-    //Número de cubiertas del nivel
-    public int numDecks = 3;
+ 
 }

@@ -26,12 +26,12 @@ public class LevelManager : MonoBehaviour
     public GameObject player;
     public PlayerController playerController;
     
-    public int level = 1;
-    public double[] timePerLevel = new double[] { 999.0, 120.0, 45.0, 30.0 };
     public double levelTimeToEnd;
     public bool isGameOn;
     public float waterMovement;
-    public Vector3 waterInitialPos; 
+    public Vector3 waterInitialPos;
+    public GameLevelListSO levelsList; 
+    public GameLevelSettingsSO currentLevelSettings; 
     #endregion
     [Header("CurrentLevel UI")]
     public CanvasGroup levelIntroUI;
@@ -40,17 +40,18 @@ public class LevelManager : MonoBehaviour
     #region Methods
     void Start()
     {
-        StartLevel(level);
+        StartLevel(PersistantInfoSingleton.Instance.currentLevel);
     }
 
     void StartLevel(int level)
     {
         waterGrid.transform.position = waterInitialPos;
-        levelTimeToEnd = timePerLevel[level];
+        currentLevelSettings = levelsList.list[level];
+        levelTimeToEnd = currentLevelSettings.levelTime;
         feedbackLevel.value = (float)levelTimeToEnd;
         feedbackLevel.maxValue = (float)levelTimeToEnd;
         isGameOn = true;
-        levelIntroText.text = level.ToString();
+        levelIntroText.text = (level + 1).ToString();
         StartCoroutine(C_ShowAndFadeOutIntroLevelText());
     }
     IEnumerator C_ShowAndFadeOutIntroLevelText()
@@ -64,18 +65,23 @@ public class LevelManager : MonoBehaviour
         }
     }
     
-    void LevelCompleted()
+    IEnumerator C_LevelCompleted()
     {
-        isGameOn = false;
-        level++;
+        PersistantInfoSingleton.Instance.currentLevel++;
         enemyManager.EndGame();
-        StartLevel(level);
+        
+        //SHOW GOOG JOB UI AND THE WAIT FOR TO LOAD NEXT LEVEL
+
+        yield return new WaitForSeconds(1f);
+
+        SceneManager.LoadScene("Main");
+        // StartLevel(PersistantInfoSingleton.Instance.currentLevel);
         //Calls to stop other managers
     }
     void LevelFailed()
     {
         isGameOn = false;
-        level = 0;
+        PersistantInfoSingleton.Instance.currentLevel = 0;
         enemyManager.EndGame();
         SceneManager.LoadScene("GameOver", LoadSceneMode.Additive);
         //Calls to stop other managers
@@ -97,7 +103,7 @@ public class LevelManager : MonoBehaviour
             // BUG? Esta posición se tendría que actualizar para que cuando el water movement sea 100, la posición de Water sea 0
             waterGrid.transform.position = waterGrid.transform.position + new Vector3(0, waterMovement, 0) / 10000;
             levelTimeToEnd -= Time.deltaTime;
-            feedbackLevel.value = (float)(timePerLevel[level] - levelTimeToEnd);
+            feedbackLevel.value = (float)(currentLevelSettings.levelTime - levelTimeToEnd);
 
             if (repairableManager.GetAlivedObjectsCount() == 0 || PlayerHasDied() || boatHPSlider.GetComponent<ShipHealthSlider>().currentHealth <= 0)
             {
@@ -105,8 +111,9 @@ public class LevelManager : MonoBehaviour
             }
             if (levelTimeToEnd <= 0)
             {
-                SceneManager.LoadScene("Main");
-                // LevelCompleted();
+                isGameOn = false;
+                StartCoroutine(C_LevelCompleted());
+                
             }
         }
     }
