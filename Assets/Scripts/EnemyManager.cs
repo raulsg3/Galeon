@@ -102,8 +102,14 @@ public class EnemyManager : MonoBehaviour
             int maxSideEnemies = gameSettings.numDecks[levelPart];
 
             //Número de enemigos en cada lado
-            int numLeftEnemies = Random.Range(1, maxSideEnemies + 1);
-            int numRightEnemies = Random.Range(1, maxSideEnemies + 1);
+            int numLeftEnemies = 0;
+            int numRightEnemies = 0;
+
+            while (numLeftEnemies == 0 && numRightEnemies == 0)
+            {
+                numLeftEnemies = Random.Range(0, maxSideEnemies + 1);
+                numRightEnemies = Random.Range(0, maxSideEnemies + 1);
+            }
 
             //Enemigos lado izquierdo
             if (numLeftEnemies > 0)
@@ -113,7 +119,7 @@ public class EnemyManager : MonoBehaviour
                 for (int enemy = 0; enemy < numLeftEnemies; ++enemy)
                 {
                     leftEnemies[enemy].side = Side.Left;
-                    leftEnemies[enemy].deck = (Deck)enemy;
+                    leftEnemies[enemy].deck = GenerateRandomDeck();
                     leftEnemies[enemy].attack = Attack.Destroy;
 
                     GenerateOneEnemy(leftEnemies[enemy].side, leftEnemies[enemy].deck, Attack.Destroy);
@@ -131,7 +137,7 @@ public class EnemyManager : MonoBehaviour
                 for (int enemy = 0; enemy < numRightEnemies; ++enemy)
                 {
                     rightEnemies[enemy].side = Side.Right;
-                    rightEnemies[enemy].deck = (Deck)enemy;
+                    rightEnemies[enemy].deck = GenerateRandomDeck();
                     rightEnemies[enemy].attack = Attack.Destroy;
 
                     GenerateOneEnemy(rightEnemies[enemy].side, rightEnemies[enemy].deck, Attack.Destroy);
