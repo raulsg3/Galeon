@@ -24,6 +24,7 @@ public class LevelManager : MonoBehaviour
     public GameObject boatHPSlider;
     public GameObject waterGrid;
     public GameObject player;
+    public PlayerController playerController;
     
     public int level = 1;
     public double[] timePerLevel = new double[] { 999.0, 120.0, 45.0, 30.0 };
@@ -32,8 +33,16 @@ public class LevelManager : MonoBehaviour
     public float waterMovement;
     public Vector3 waterInitialPos; 
     #endregion
-
+    [Header("CurrentLevel UI")]
+    public CanvasGroup levelIntroUI;
+    public TMPro.TextMeshProUGUI levelIntroText;
+    private float introFadeOutSpeed = 2f;
     #region Methods
+    void Start()
+    {
+        StartLevel(level);
+    }
+
     void StartLevel(int level)
     {
         waterGrid.transform.position = waterInitialPos;
@@ -41,6 +50,18 @@ public class LevelManager : MonoBehaviour
         feedbackLevel.value = (float)levelTimeToEnd;
         feedbackLevel.maxValue = (float)levelTimeToEnd;
         isGameOn = true;
+        levelIntroText.text = level.ToString();
+        StartCoroutine(C_ShowAndFadeOutIntroLevelText());
+    }
+    IEnumerator C_ShowAndFadeOutIntroLevelText()
+    {
+        levelIntroUI.alpha = 1f;
+        yield return new WaitForSeconds(1f);
+        while(levelIntroUI.alpha > 0)
+        {
+            levelIntroUI.alpha -= Time.deltaTime *introFadeOutSpeed;
+            yield return null;
+        }
     }
     
     void LevelCompleted()
@@ -63,15 +84,10 @@ public class LevelManager : MonoBehaviour
 
     public bool PlayerHasDied()
     {
-        return player.GetComponent<PlayerData>().health <= 0;
+        return playerController.bIsPlayerDead;
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        StartLevel(level);
-    }
-
+   
     // Update is called once per frame
     void Update()
     {
@@ -89,7 +105,8 @@ public class LevelManager : MonoBehaviour
             }
             if (levelTimeToEnd <= 0)
             {
-                LevelCompleted();
+                SceneManager.LoadScene("Main");
+                // LevelCompleted();
             }
         }
     }

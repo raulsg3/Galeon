@@ -18,6 +18,7 @@ public class EnemyMovePlayer : MonoBehaviour
     private float accAttackTime = 0.0f;
 
     void Start () {
+        attackTime = accAttackTime;
         player = GameObject.FindGameObjectWithTag(Tags.Player);
 
         enemyWalkAnimator = this.transform.Find("Visual/Body").GetComponent<Animator>();
@@ -52,14 +53,15 @@ public class EnemyMovePlayer : MonoBehaviour
 
             if (accAttackTime >= attackTime)
             {
-                accAttackTime = 0.0f;
-                player.GetComponent<PlayerController>().TakeDamage();
+                accAttackTime = 0f;
+                enemyActionAnimator.SetTrigger("Attack");
+                // player.GetComponent<PlayerController>().TakeDamage();
             }
         }
 
         if (attacking)
         {
-            enemyActionAnimator.SetTrigger("Attack");
+            // enemyActionAnimator.SetTrigger("Attack");
         }
     }
 }

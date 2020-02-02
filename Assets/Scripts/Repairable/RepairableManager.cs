@@ -85,7 +85,10 @@ public class RepairableManager : MonoBehaviour
                 } 
             }
         }
-        if(closestObject == null) Debug.Log("There arent any objects on your floor");
+        if(closestObject == null) 
+        {
+            // Debug.Log("There arent any objects on your floor");
+        }
         return closestObject;
     }
 }

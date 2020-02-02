@@ -19,7 +19,9 @@ public class PlayerController : MonoBehaviour
     public int currentHP;
     private float currentSwordCD = 0;
     private float currentPistolCD = 0;
-    bool bIsPlayerDead= false;
+    [HideInInspector]public bool bIsPlayerDead= false;
+    private float feedackProgress = 1f;
+
     void Awake()
     {
         currentHP = gameSettings.playerMaxHealth;
@@ -27,6 +29,7 @@ public class PlayerController : MonoBehaviour
       
 
     }
+      
     void Update()
     {
         if(bIsPlayerDead) return;
@@ -95,7 +98,7 @@ public class PlayerController : MonoBehaviour
                             Time.deltaTime * velocidadEjeY * gameSettings.playerVerSpeed));
 
 
-        // CheckForDamageFeedbackUpdate();
+        CheckForDamageFeedbackUpdate();
         if (Input.GetKeyDown(KeyCode.J) && currentPistolCD <= 0)
         {
             currentPistolCD = gameSettings.pistolCooldown;
@@ -118,22 +121,23 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-
     private void CheckForDamageFeedbackUpdate()
     {
-        while(playerSpriteRenderer.color != Color.white)
+        if(feedackProgress < 1)
         {
-
+            feedackProgress += Time.deltaTime * gameSettings.enemyFeedbackSpeed;
+            playerSpriteRenderer.color = Color.Lerp(Color.red,Color.white,feedackProgress);
         }
         
     }
     [DebugButton]
     public void TakeDamage()
     {
-        playerSpriteRenderer.color = Color.red;
+        Debug.Log("player TakeDamage");
         currentHP--;
         if(currentHP < 0) currentHP = 0;
         UpdateHealthSlider();
+        feedackProgress = 0;
         if(currentHP == 0)
         {
             PlayerDied();
@@ -147,23 +151,9 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateHealthSlider()
     {
-        healthImage.fillAmount = currentHP / gameSettings.playerMaxHealth; 
+        healthImage.fillAmount = (float)currentHP / (float)gameSettings.playerMaxHealth; 
     }
 
-    IEnumerator C_DamageFeedback()
-    {
-        yield return null;
-    }
-
-    
-    public void CheckPistolCDUpdate()
-    {
-
-    }
-    public void CheckSwordCDUpdate()
-    {
-        
-    }
     void OnTriggerEnter2D(Collider2D collider2D)
     {
         if(collider2D.CompareTag(Tags.Ladder))
@@ -174,7 +164,13 @@ public class PlayerController : MonoBehaviour
         if(collider2D.CompareTag(Tags.RepairableObject))
         {
             currentObjectToRepair = collider2D.GetComponent<RepairableObject>();
-        } 
+        }
+        
+        if(collider2D.CompareTag(Tags.EnemySword))
+        {
+            TakeDamage();
+        }
+            
 
     }
     void OnTriggerStay2D(Collider2D collider2D)
