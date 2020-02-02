@@ -48,14 +48,14 @@ public class LevelManager : MonoBehaviour
 
     void StartLevel(int level)
     {
-        waterGrid.transform.position = waterInitialPos;
         currentLevelSettings = levelsList.list[level];
+        enemyManager.gameSettings = currentLevelSettings; 
+        waterGrid.transform.position = waterInitialPos;
         levelTimeToEnd = currentLevelSettings.levelTime;
         feedbackLevel.value = (float)levelTimeToEnd;
         feedbackLevel.maxValue = (float)levelTimeToEnd;
         isGameOn = true;
         levelIntroText.text = (level + 1).ToString();
-        enemyManager.gameSettings =currentLevelSettings; 
         StartCoroutine(C_ShowAndFadeOutCanvasGroup(levelIntroUI,2));
     }
 
