@@ -624,7 +624,7 @@ GameObject:
   - component: {fileID: 2784858400916047749}
   m_Layer: 8
   m_Name: Sword
-  m_TagString: Sword
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -893,7 +893,7 @@ GameObject:
   - component: {fileID: 2881346966353372370}
   m_Layer: 8
   m_Name: SwordCollider
-  m_TagString: EnemySword
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
