@@ -20,3 +20,4 @@ MonoBehaviour:
   - 6
   - 5
   numDecks: 020000000200000003000000
+  music: {fileID: 8300000, guid: bb603a6717c0e9a419118fd9e052aac3, type: 3}

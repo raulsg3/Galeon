@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 728604583c75a3044b8848d9d7efec3a, type: 3}
-  m_Name: FraseDestructor5
+  m_Name: FraseDestructor6
   m_EditorClassIdentifier: 
-  frase: I wish I could swim
+  frase: You fight like a cow
