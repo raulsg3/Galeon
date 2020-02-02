@@ -5,12 +5,15 @@ using UnityEngine;
 public class GameLevelSettingsSO : ScriptableObject
 {
     public float levelTime = 120f;
+
     [Header("Eneny manager")]
-    public int maxEnemies = 15;
-    public float waitingTime = 6.0f;
+    public const int numParts = 3;
 
-    public float startWaitingTime = 6.0f;
+    public int[] maxEnemies;
 
-    public int numDecks = 3;
+    public float startWaitingTime = 2.0f;
+    public float[] waitingTime;
+
+    public int[] numDecks;
 
 }

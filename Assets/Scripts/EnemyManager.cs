@@ -55,6 +55,8 @@ public class EnemyManager : MonoBehaviour
     //GameObject de la escena donde instanciar los enemigos
     private GameObject enemiesGameObject;
 
+    private int levelPart = 0;
+
     #region Singleton
     public static EnemyManager enemyManagerInstance;
 
@@ -77,6 +79,7 @@ public class EnemyManager : MonoBehaviour
 	}
 	
 	void Update () {
+        UpdateLevelPart();
 	}
 
     //Corrutina de generación de enemigos
@@ -90,7 +93,7 @@ public class EnemyManager : MonoBehaviour
             GenerateNextWave();
 
             //Espera entre oleadas de enemigos
-            yield return new WaitForSeconds(gameSettings.waitingTime);
+            yield return new WaitForSeconds(gameSettings.waitingTime[levelPart]);
         }
     }
 
@@ -141,13 +144,13 @@ public class EnemyManager : MonoBehaviour
     //Comprueba que no hayamos llegado al límite de enemigos
     bool CanGenerateNextWave()
     {
-        return enemiesGameObject.transform.childCount < gameSettings.maxEnemies;
+        return enemiesGameObject.transform.childCount < gameSettings.maxEnemies[levelPart];
     }
 
     //Devuelve una cubierta aleatoria
     private Deck GenerateRandomDeck()
     {
-        return (Deck)Random.Range(0, gameSettings.numDecks);
+        return (Deck)Random.Range(0, gameSettings.numDecks[levelPart]);
     }
 
     //Devuelve un tipo de ataque aleatorio
@@ -223,5 +226,17 @@ public class EnemyManager : MonoBehaviour
 
         //foreach (GameObject destroyable in enemies)
         //    Destroy(destroyable);
+    }
+
+    void UpdateLevelPart()
+    {
+        float levelPercentageCompleted = LevelManager.levelManagerInstance.GetLevelPercentageCompleted();
+
+        if (levelPercentageCompleted < 0.33f)
+            levelPart = 0;
+        else if (levelPercentageCompleted < 0.66f)
+            levelPart = 1;
+        else 
+            levelPart = 2;
     }
 }

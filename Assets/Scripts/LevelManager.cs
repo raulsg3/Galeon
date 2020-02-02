@@ -132,5 +132,10 @@ public class LevelManager : MonoBehaviour
             yield return null;
         }
     }
+
+    public float GetLevelPercentageCompleted()
+    {
+        return (float)levelTimeToEnd / (float)currentLevelSettings.levelTime;
+    }
     
 }
