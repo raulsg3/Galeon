@@ -145,6 +145,7 @@ public class EnemyManager : MonoBehaviour
     {
         if (levelPart >= gameSettings.maxEnemies.Length)
             levelPart = gameSettings.maxEnemies.Length - 1;
+            
         return enemiesGameObject.transform.childCount < gameSettings.maxEnemies[levelPart];
     }
 
