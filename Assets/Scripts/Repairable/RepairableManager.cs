@@ -91,6 +91,26 @@ public class RepairableManager : MonoBehaviour
         }
         return closestObject;
     }
+
+    public GameObject GetFarestObjectInFloor(Vector3 position)
+    {
+        float farestDistance = 0.0f;
+        GameObject farestObject = null;
+
+        foreach (RepairableObject repairableObject in objectsList.list)
+        {
+            if (Mathf.Abs(repairableObject.transform.position.y - position.y) < 1)
+            {
+                float distance = Vector2.Distance(repairableObject.transform.position, position);
+                if (distance > farestDistance)
+                {
+                    farestObject = repairableObject.gameObject;
+                    farestDistance = distance;
+                }
+            }
+        }
+        return farestObject;
+    }
 }
 public struct ShipState{
     public int repairableObjectCount;
