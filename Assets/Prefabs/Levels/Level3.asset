@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdd046b6a3483ec4bb26c0d68794bc40, type: 3}
   m_Name: Level3
   m_EditorClassIdentifier: 
-  levelTime: 60
+  levelTime: 45
   maxEnemies: 0a0000000a0000000f000000
   startWaitingTime: 5
   waitingTime:
-  - 6
-  - 6
+  - 7
+  - 7
   - 6
   numDecks: 020000000200000003000000
   music: {fileID: 8300000, guid: bb603a6717c0e9a419118fd9e052aac3, type: 3}

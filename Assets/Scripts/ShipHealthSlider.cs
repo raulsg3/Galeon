@@ -43,8 +43,31 @@ public class ShipHealthSlider : MonoBehaviour
 
     private float GetHealing()
     {
-        ShipState shipState = repairableManager.GetShipState(); 
-        return shipState.repairableObjectDestroyedCount == 0 ? (float)1.5 : (float)1;
+        float recovery;
+        ShipState shipState = repairableManager.GetShipState();
+        if (shipState.repairableObjectDestroyedCount == 0)
+        { 
+            if (currentHealth < 50)
+            {
+                recovery = (float)3.5;
+            }
+            else
+            {
+                recovery = (float)1.5;
+            }
+        }
+        else
+        {
+            if (currentHealth < 50)
+            {
+                recovery = 3;
+            }
+            else
+            {
+                recovery = 1;
+            }
+        }
+        return recovery;
     }
 
     private float GetDecreaseSpeed()

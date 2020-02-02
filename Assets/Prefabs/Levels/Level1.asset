@@ -18,6 +18,6 @@ MonoBehaviour:
   waitingTime:
   - 8
   - 8
-  - 8
+  - 7
   numDecks: 010000000100000002000000
   music: {fileID: 8300000, guid: 0f0106d759d970d40aedc6a775fb8a35, type: 3}
