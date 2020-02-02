@@ -25,7 +25,8 @@ public class LevelManager : MonoBehaviour
     public GameObject waterGrid;
     public GameObject player;
     public PlayerController playerController;
-    
+    public AudioSource music;
+
     public double levelTimeToEnd;
     public bool isGameOn;
     public float waterMovement;
@@ -56,6 +57,8 @@ public class LevelManager : MonoBehaviour
         feedbackLevel.maxValue = (float)levelTimeToEnd;
         isGameOn = true;
         levelIntroText.text = (level + 1).ToString();
+        music.clip = currentLevelSettings.music;
+        music.Play(0);
         StartCoroutine(C_ShowAndFadeOutCanvasGroup(levelIntroUI,2));
     }
 

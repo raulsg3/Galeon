@@ -16,4 +16,5 @@ public class GameLevelSettingsSO : ScriptableObject
 
     public int[] numDecks;
 
+    public AudioClip music;
 }
