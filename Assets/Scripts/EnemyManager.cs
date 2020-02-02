@@ -45,9 +45,6 @@ public class EnemyManager : MonoBehaviour
     //Fin del juego
     private bool endGame = false;
 
-    //Próxima oleada
-    private int nextWaveIndex = 0;
-
     //Prefabs de los enemigos
     public GameObject enemyAttack;
     public GameObject enemyDestroy;
@@ -102,12 +99,11 @@ public class EnemyManager : MonoBehaviour
     {
         if (CanGenerateNextWave())
         {
-            nextWaveIndex++;
-            int maxSideEnemies = nextWaveIndex;
+            int maxSideEnemies = gameSettings.numDecks[levelPart];
 
             //Número de enemigos en cada lado
-            int numLeftEnemies = Random.Range(1, nextWaveIndex + 1);
-            int numRightEnemies = Random.Range(1, nextWaveIndex + 1);
+            int numLeftEnemies = Random.Range(1, maxSideEnemies + 1);
+            int numRightEnemies = Random.Range(1, maxSideEnemies + 1);
 
             //Enemigos lado izquierdo
             if (numLeftEnemies > 0)
@@ -118,9 +114,12 @@ public class EnemyManager : MonoBehaviour
                 {
                     leftEnemies[enemy].side = Side.Left;
                     leftEnemies[enemy].deck = GenerateRandomDeck();
-                    leftEnemies[enemy].attack = GenerateRandomAttack();
+                    leftEnemies[enemy].attack = Attack.Destroy;
 
-                    GenerateOneEnemy(leftEnemies[enemy].side, leftEnemies[enemy].deck, leftEnemies[enemy].attack);
+                    GenerateOneEnemy(leftEnemies[enemy].side, leftEnemies[enemy].deck, Attack.Destroy);
+
+                    for (int i = 0; i < levelPart + 1; ++i)
+                        GenerateOneEnemy(leftEnemies[enemy].side, leftEnemies[enemy].deck, Attack.Attack);
                 }
             }
 

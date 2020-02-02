@@ -5,13 +5,14 @@ public class EnemyMovePlayer : MonoBehaviour
 {
     public GameSettingsSO gameSettings;
 
+    private RepairableObject target = null;
     private GameObject player;
     private bool attacking = false;
 
     public Animator enemyWalkAnimator;
     public Animator enemyActionAnimator;
 
-    public float speed = 5f;
+    public float speed = 2.5f;
 
     //Daño
     public float attackTime = 5.0f;
@@ -26,9 +27,9 @@ public class EnemyMovePlayer : MonoBehaviour
     }
 	
 	void Update () {
-        //Player en el mismo nivel
         if (Mathf.Abs(player.transform.position.y - transform.position.y) < player.GetComponent<PlayerData>().height)
         {
+            //Player en el mismo nivel
             if (Mathf.Abs(player.transform.position.x - transform.position.x) > player.GetComponent<PlayerData>().width)
             {
                 attacking = false;
@@ -64,5 +65,39 @@ public class EnemyMovePlayer : MonoBehaviour
                 }
             }
         }
+        else
+        {
+            //Patrullar
+            if (target == null || target.IsDestoyed())
+                GetRepairableTargetForPatrol();
+
+            if (target != null)
+            {
+                float direction = target.transform.position.x - transform.position.x;
+
+                Vector3 directionVector = new Vector3(direction, 0, 0);
+                directionVector.Normalize();
+
+                transform.Translate(directionVector * speed / (float)2 * Time.deltaTime);
+
+                enemyWalkAnimator.SetBool("Walking", true);
+                if (directionVector.x > 0)
+                {
+                    transform.localScale = new Vector3(-1, 1, 1);
+                }
+                else if (directionVector.x < 0)
+                {
+                    transform.localScale = new Vector3(1, 1, 1);
+                }
+            }
+        }
+    }
+
+    //Busca el objetivo destruible más cercano
+    void GetRepairableTargetForPatrol()
+    {
+        GameObject farestTarget = RepairableManager.repairableManagerInstance.GetFarestObjectInFloor(transform.position);
+        if (farestTarget != null)
+            target = farestTarget.GetComponent<RepairableObject>();
     }
 }
