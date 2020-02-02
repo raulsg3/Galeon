@@ -12,7 +12,8 @@ public class EnemyMovePlayer : MonoBehaviour
     public Animator enemyWalkAnimator;
     public Animator enemyActionAnimator;
 
-    public float speed = 2.5f;
+    public float speed = 1f;
+    private float marginSpeed = 1f;
 
     //Daño
     public float attackTime = 5.0f;
@@ -24,6 +25,8 @@ public class EnemyMovePlayer : MonoBehaviour
 
         enemyWalkAnimator = this.transform.Find("Visual/Body").GetComponent<Animator>();
         enemyActionAnimator = this.transform.Find("Weapons").GetComponent<Animator>();
+
+        speed += Random.Range(0, marginSpeed);
     }
 	
 	void Update () {

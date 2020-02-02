@@ -11,7 +11,8 @@ public class EnemyMoveRepairable : MonoBehaviour
     public Animator enemyWalkAnimator;
     public Animator enemyActionAnimator;
 
-    public float speed = 5f;
+    public float speed = 4f;
+    private float marginSpeed = 0.5f;
 
     //Daño
     public float attackTime = 5.0f;
@@ -20,6 +21,8 @@ public class EnemyMoveRepairable : MonoBehaviour
     void Start () {
         enemyWalkAnimator = this.transform.Find("Visual/Body").GetComponent<Animator>();
         enemyActionAnimator = this.transform.Find("Weapons").GetComponent<Animator>();
+
+        speed += Random.Range(0, marginSpeed);
     }
 	
 	void Update () {

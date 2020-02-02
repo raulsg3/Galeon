@@ -11,11 +11,25 @@ public class EnemyLife : MonoBehaviour {
     public SpriteRenderer visualSprite;
     float feedbackProgress = 1f;
     public GameSettingsSO gameSettings;
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if(other.tag == Tags.Sword)
         {
             Damage(34f);
+
+            float damageRecoil = gameSettings.damageRecoilAttack;
+
+            EnemyMovePlayer movePlayer = gameObject.GetComponent<EnemyMovePlayer>();
+            if (movePlayer != null)
+                damageRecoil = gameSettings.damageRecoilAttack;
+            else
+                damageRecoil = gameSettings.damageRecoilDestroy;
+
+            float direction = (gameObject.transform.localScale.x - other.gameObject.transform.localScale.x < 0) ? -1 : 1;
+
+            gameObject.GetComponent<Rigidbody2D>().AddForce(
+                new Vector2(gameObject.transform.localScale.x, 0) * direction * damageRecoil, ForceMode2D.Impulse);
         }
     }
     void Update()
