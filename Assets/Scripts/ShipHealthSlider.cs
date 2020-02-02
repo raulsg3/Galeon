@@ -10,8 +10,8 @@ public class ShipHealthSlider : MonoBehaviour
 
     public GameSettingsSO gameSettings;
 
-    float maxHealth = 100;
-    float currentHealth = 100;
+    public float maxHealth = 100;
+    public float currentHealth = 100;
 
     IEnumerator Start()
     {
