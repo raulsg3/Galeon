@@ -11,6 +11,10 @@ public class WeaponController : MonoBehaviour
     public GameObject bulletPrefab;
     public GameObject spawnPosition;
     public bool isRepairableEnemy;
+
+    public AudioSource shootSFX;
+    public AudioSource swordSFX;
+
     // Instaciate the bullet prefab
     void Shoot()
     {
@@ -23,6 +27,8 @@ public class WeaponController : MonoBehaviour
         // Move backwards the player and stop it a while
         player.GetComponent<Rigidbody2D>().velocity = new Vector3(gameSettings.shootRecoil * player.transform.localScale.x, 0, 0);
         player.GetComponent<PlayerController>().currentStopTime = gameSettings.stopTime;
+
+        shootSFX.Play(0);
     }
 
     void OnTriggerEnter2D(Collider2D collider)
@@ -33,6 +39,7 @@ public class WeaponController : MonoBehaviour
     void StartCut()
     {
         swordCollider.enabled = true;
+        swordSFX.Play(0);
     }
 
     void EndCut()
