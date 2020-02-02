@@ -237,9 +237,9 @@ public class EnemyManager : MonoBehaviour
     {
         float levelPercentageCompleted = LevelManager.levelManagerInstance.GetLevelPercentageCompleted();
 
-        if (levelPercentageCompleted < 0.33f)
+        if (levelPercentageCompleted > 0.66f)
             levelPart = 0;
-        else if (levelPercentageCompleted < 0.66f)
+        else if (levelPercentageCompleted > 0.33f)
             levelPart = 1;
         else 
             levelPart = 2;
