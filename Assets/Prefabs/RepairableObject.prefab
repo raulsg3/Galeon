@@ -806,6 +806,7 @@ MonoBehaviour:
     type: 2}
   repairSFX: {fileID: 1822613062261536439}
   OnDamageParticles: {fileID: 100006, guid: d22808fb4d0b046408929feef1bd0a15, type: 3}
+  OnRepairParticles: {fileID: 100000, guid: 4ec45fa93919ed642b652e242c2cfe32, type: 3}
 --- !u!61 &7295382850365108986
 BoxCollider2D:
   m_ObjectHideFlags: 0

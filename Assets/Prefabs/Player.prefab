@@ -606,7 +606,6 @@ MonoBehaviour:
   spawnPosition: {fileID: 315314814987438407}
   isRepairableEnemy: 0
   shootSFX: {fileID: 805622016116489983}
-  repairSFX: {fileID: 6918293807199188996}
   swordSFX: {fileID: 8261829719511306352}
 --- !u!82 &805622016116489983
 AudioSource:
@@ -810,7 +809,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 467cadeab60613f4bbcf0cb4da3eab6b, type: 3}
+  m_audioClip: {fileID: 8300000, guid: fecf20e3b0045dd42be02cf43afdceb7, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
