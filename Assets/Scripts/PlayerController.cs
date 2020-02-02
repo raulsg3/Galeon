@@ -117,7 +117,7 @@ public class PlayerController : MonoBehaviour
                 currentObjectToRepair.GiveHealth();
             }
             else{
-                Debug.Log("Not object to repair");
+                // Debug.Log("Not object to repair");
             }
         }
     }
@@ -133,7 +133,6 @@ public class PlayerController : MonoBehaviour
     [DebugButton]
     public void TakeDamage()
     {
-        Debug.Log("player TakeDamage");
         currentHP--;
         if(currentHP < 0) currentHP = 0;
         UpdateHealthSlider();

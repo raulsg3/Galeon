@@ -33,8 +33,10 @@ public class LevelManager : MonoBehaviour
     public GameLevelListSO levelsList; 
     public GameLevelSettingsSO currentLevelSettings; 
     #endregion
-    [Header("CurrentLevel UI")]
+    [Header("Level UI")]
     public CanvasGroup levelIntroUI;
+    public CanvasGroup levelGameOverUI;
+    public CanvasGroup levelCompletedUI;
     public TMPro.TextMeshProUGUI levelIntroText;
     private float introFadeOutSpeed = 2f;
     #region Methods
@@ -52,39 +54,31 @@ public class LevelManager : MonoBehaviour
         feedbackLevel.maxValue = (float)levelTimeToEnd;
         isGameOn = true;
         levelIntroText.text = (level + 1).ToString();
-        StartCoroutine(C_ShowAndFadeOutIntroLevelText());
+        StartCoroutine(C_ShowAndFadeOutCanvasGroup(levelIntroUI,2));
     }
-    IEnumerator C_ShowAndFadeOutIntroLevelText()
-    {
-        levelIntroUI.alpha = 1f;
-        yield return new WaitForSeconds(1f);
-        while(levelIntroUI.alpha > 0)
-        {
-            levelIntroUI.alpha -= Time.deltaTime *introFadeOutSpeed;
-            yield return null;
-        }
-    }
-    
+
     IEnumerator C_LevelCompleted()
     {
         PersistantInfoSingleton.Instance.currentLevel++;
+        StartCoroutine(C_ShowAndFadeOutCanvasGroup(levelCompletedUI,0.1f));
         enemyManager.EndGame();
-        
-        //SHOW GOOG JOB UI AND THE WAIT FOR TO LOAD NEXT LEVEL
-
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
 
         SceneManager.LoadScene("Main");
         // StartLevel(PersistantInfoSingleton.Instance.currentLevel);
         //Calls to stop other managers
     }
-    void LevelFailed()
+    IEnumerator C_LevelFailed()
     {
         isGameOn = false;
         PersistantInfoSingleton.Instance.currentLevel = 0;
         enemyManager.EndGame();
-        SceneManager.LoadScene("GameOver", LoadSceneMode.Additive);
-        //Calls to stop other managers
+        StartCoroutine(C_ShowAndFadeOutCanvasGroup(levelGameOverUI,0.1f));
+
+        //SHOW GOOG JOB UI AND THE WAIT FOR TO LOAD NEXT LEVEL
+
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene("GameOver");
     }
     #endregion
 
@@ -105,9 +99,10 @@ public class LevelManager : MonoBehaviour
             levelTimeToEnd -= Time.deltaTime;
             feedbackLevel.value = (float)(currentLevelSettings.levelTime - levelTimeToEnd);
 
-            if (repairableManager.GetAlivedObjectsCount() == 0 || PlayerHasDied() || boatHPSlider.GetComponent<ShipHealthSlider>().currentHealth <= 0)
+            if (PlayerHasDied() || boatHPSlider.GetComponent<ShipHealthSlider>().currentHealth <= 0)
             {
-                LevelFailed();
+                isGameOn = false;
+                StartCoroutine(C_LevelFailed());
             }
             if (levelTimeToEnd <= 0)
             {
@@ -117,4 +112,15 @@ public class LevelManager : MonoBehaviour
             }
         }
     }
+    IEnumerator C_ShowAndFadeOutCanvasGroup(CanvasGroup canvasGroupToFade,float fadeSpeed)
+    {
+        canvasGroupToFade.alpha = 1f;
+        yield return new WaitForSeconds(1f);
+        while(canvasGroupToFade.alpha > 0)
+        {
+            canvasGroupToFade.alpha -= Time.deltaTime *fadeSpeed;
+            yield return null;
+        }
+    }
+    
 }
