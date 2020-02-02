@@ -20,8 +20,8 @@ MonoBehaviour:
   bulletSpeed: 15
   shootRecoil: 2
   stopTime: 0.25
-  damagePerMidObject: 0.25
-  damagePerDestroyed: 0.5
+  damagePerMidObject: 1
+  damagePerDestroyed: 2
   enemyFeedbackSpeed: 1
   OnDamageBoatParticles: {fileID: 100006, guid: d22808fb4d0b046408929feef1bd0a15,
     type: 3}

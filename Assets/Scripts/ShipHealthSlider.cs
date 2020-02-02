@@ -26,7 +26,8 @@ public class ShipHealthSlider : MonoBehaviour
 
     private void UpdateSlider()
     {
-        currentHealth -= Time.deltaTime * GetDecreaseSpeed();
+        currentHealth -= (Time.deltaTime * GetDecreaseSpeed() - Time.deltaTime * GetHealing());
+        Debug.Log(Time.deltaTime* GetDecreaseSpeed() - Time.deltaTime * GetHealing());
         sliderfill.fillAmount = (float)currentHealth / (float)maxHealth;
         if(sliderfill.fillAmount >= 0.60f)
         {
@@ -38,6 +39,11 @@ public class ShipHealthSlider : MonoBehaviour
         }else{
             sliderfill.color = Color.red;
         }
+    }
+
+    private float GetHealing()
+    {
+        return 2;
     }
 
     private float GetDecreaseSpeed()
