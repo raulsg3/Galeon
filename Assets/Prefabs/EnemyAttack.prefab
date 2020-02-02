@@ -248,7 +248,7 @@ MonoBehaviour:
   gameSettings: {fileID: 11400000, guid: d8f3b228e622e0044b875a77b80446d9, type: 2}
   enemyWalkAnimator: {fileID: 0}
   enemyActionAnimator: {fileID: 0}
-  speed: 3
+  speed: 1
   attackTime: 0.5
 --- !u!1 &1733122034554751027
 GameObject:
@@ -404,6 +404,8 @@ MonoBehaviour:
     type: 3}
   spawnPosition: {fileID: 0}
   isRepairableEnemy: 0
+  shootSFX: {fileID: 0}
+  swordSFX: {fileID: 0}
 --- !u!1 &3078697594535133642
 GameObject:
   m_ObjectHideFlags: 0
