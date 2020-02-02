@@ -21,7 +21,8 @@ public class PlayerController : MonoBehaviour
     private float currentPistolCD = 0;
     [HideInInspector]public bool bIsPlayerDead= false;
     private float feedackProgress = 1f;
-
+    private float playerInmunityCooldown =1;
+    private float currentPlayerInmunity =0f;
     void Awake()
     {
         currentHP = gameSettings.playerMaxHealth;
@@ -120,6 +121,8 @@ public class PlayerController : MonoBehaviour
                 // Debug.Log("Not object to repair");
             }
         }
+
+        currentPlayerInmunity-= Time.deltaTime;
     }
     private void CheckForDamageFeedbackUpdate()
     {
@@ -133,6 +136,9 @@ public class PlayerController : MonoBehaviour
     [DebugButton]
     public void TakeDamage()
     {
+        if(currentPlayerInmunity > 0) return;
+        currentPlayerInmunity = playerInmunityCooldown;
+
         currentHP--;
         if(currentHP < 0) currentHP = 0;
         UpdateHealthSlider();
