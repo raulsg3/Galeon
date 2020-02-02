@@ -26,42 +26,43 @@ public class EnemyMovePlayer : MonoBehaviour
     }
 	
 	void Update () {
-        if (Mathf.Abs(player.transform.position.x - transform.position.x) > player.GetComponent<PlayerData>().width)
+        //Player en el mismo nivel
+        if (Mathf.Abs(player.transform.position.y - transform.position.y) < player.GetComponent<PlayerData>().height)
         {
-            attacking = false;
-            enemyWalkAnimator.SetBool("Walking", true);
-
-            float direction = player.transform.position.x - transform.position.x;
-
-            Vector3 directionVector = new Vector3(direction, 0, 0);
-            directionVector.Normalize();
-
-            transform.Translate(directionVector * speed * Time.deltaTime);
-
-            if(directionVector.x > 0){
-                transform.localScale = new Vector3(-1,1, 1);
-            }else if (directionVector.x < 0) {
-                transform.localScale = new Vector3(1, 1, 1);
-            }
-        }
-        else
-        {
-            attacking = true;
-            enemyWalkAnimator.SetBool("Walking", false);
-
-            accAttackTime += Time.deltaTime;
-
-            if (accAttackTime >= attackTime)
+            if (Mathf.Abs(player.transform.position.x - transform.position.x) > player.GetComponent<PlayerData>().width)
             {
-                accAttackTime = 0f;
-                enemyActionAnimator.SetTrigger("Attack");
-                // player.GetComponent<PlayerController>().TakeDamage();
-            }
-        }
+                attacking = false;
+                enemyWalkAnimator.SetBool("Walking", true);
 
-        if (attacking)
-        {
-            // enemyActionAnimator.SetTrigger("Attack");
+                float direction = player.transform.position.x - transform.position.x;
+
+                Vector3 directionVector = new Vector3(direction, 0, 0);
+                directionVector.Normalize();
+
+                transform.Translate(directionVector * speed * Time.deltaTime);
+
+                if (directionVector.x > 0)
+                {
+                    transform.localScale = new Vector3(-1, 1, 1);
+                }
+                else if (directionVector.x < 0)
+                {
+                    transform.localScale = new Vector3(1, 1, 1);
+                }
+            }
+            else
+            {
+                attacking = true;
+                enemyWalkAnimator.SetBool("Walking", false);
+
+                accAttackTime += Time.deltaTime;
+
+                if (accAttackTime >= attackTime)
+                {
+                    accAttackTime = 0f;
+                    enemyActionAnimator.SetTrigger("Attack");
+                }
+            }
         }
     }
 }
