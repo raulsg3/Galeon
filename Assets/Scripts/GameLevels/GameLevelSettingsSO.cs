@@ -4,6 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Galeon/LevelSettings", fileName = "GameLevelValues")]
 public class GameLevelSettingsSO : ScriptableObject
 {
+    public float levelTime = 120f;
     [Header("Eneny manager")]
     public int maxEnemies = 15;
     public float waitingTime = 6.0f;
@@ -12,5 +13,4 @@ public class GameLevelSettingsSO : ScriptableObject
 
     public int numDecks = 3;
 
-    public float levelTime = 120f;
 }

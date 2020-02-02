@@ -28,6 +28,16 @@ public class ShipHealthSlider : MonoBehaviour
     {
         currentHealth -= Time.deltaTime * GetDecreaseSpeed();
         sliderfill.fillAmount = (float)currentHealth / (float)maxHealth;
+        if(sliderfill.fillAmount >= 0.60f)
+        {
+            sliderfill.color = Color.green;
+        }else if(sliderfill.fillAmount >= 0.30f)
+        {
+            sliderfill.color = Color.yellow;
+
+        }else{
+            sliderfill.color = Color.red;
+        }
     }
 
     private float GetDecreaseSpeed()

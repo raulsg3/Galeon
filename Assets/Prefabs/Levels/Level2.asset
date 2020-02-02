@@ -16,4 +16,4 @@ MonoBehaviour:
   waitingTime: 3
   startWaitingTime: 2
   numDecks: 3
-  levelTime: 3
+  levelTime: 30

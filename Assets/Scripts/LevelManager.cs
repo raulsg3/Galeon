@@ -54,6 +54,7 @@ public class LevelManager : MonoBehaviour
         feedbackLevel.maxValue = (float)levelTimeToEnd;
         isGameOn = true;
         levelIntroText.text = (level + 1).ToString();
+        enemyManager.gameSettings =currentLevelSettings; 
         StartCoroutine(C_ShowAndFadeOutCanvasGroup(levelIntroUI,2));
     }
 
