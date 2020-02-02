@@ -16,7 +16,7 @@ MonoBehaviour:
   maxEnemies: 050000000a0000000f000000
   startWaitingTime: 3
   waitingTime:
-  - 5
-  - 3
-  - 2
-  numDecks: 010000000200000003000000
+  - 7
+  - 7
+  - 7
+  numDecks: 010000000200000002000000
