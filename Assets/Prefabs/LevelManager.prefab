@@ -48,11 +48,16 @@ MonoBehaviour:
   enemyManager: {fileID: -8924104135309644901, guid: ee44f1248bbb1e54bbb32e32b1acd84b,
     type: 3}
   feedbackLevel: {fileID: 0}
+  boatHPSlider: {fileID: 0}
+  waterGrid: {fileID: 0}
+  player: {fileID: 0}
   level: 0
   timePerLevel:
-  - 999
-  - 60
-  - 45
   - 30
+  - 60
+  - 120
+  - 160
   levelTimeToEnd: 0
   isGameOn: 0
+  waterMovement: 0
+  waterInitialPos: {x: 0, y: -8.9, z: 20}
