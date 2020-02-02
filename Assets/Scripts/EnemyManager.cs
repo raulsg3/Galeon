@@ -143,6 +143,8 @@ public class EnemyManager : MonoBehaviour
     //Comprueba que no hayamos llegado al límite de enemigos
     bool CanGenerateNextWave()
     {
+        if (levelPart >= gameSettings.maxEnemies.Length)
+            levelPart = gameSettings.maxEnemies.Length - 1;
         return enemiesGameObject.transform.childCount < gameSettings.maxEnemies[levelPart];
     }
 
