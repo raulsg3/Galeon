@@ -113,12 +113,12 @@ public class EnemyManager : MonoBehaviour
                 for (int enemy = 0; enemy < numLeftEnemies; ++enemy)
                 {
                     leftEnemies[enemy].side = Side.Left;
-                    leftEnemies[enemy].deck = GenerateRandomDeck();
+                    leftEnemies[enemy].deck = (Deck)enemy;
                     leftEnemies[enemy].attack = Attack.Destroy;
 
                     GenerateOneEnemy(leftEnemies[enemy].side, leftEnemies[enemy].deck, Attack.Destroy);
 
-                    for (int i = 0; i < levelPart + 1; ++i)
+                    for (int i = 0; i < levelPart; ++i)
                         GenerateOneEnemy(leftEnemies[enemy].side, leftEnemies[enemy].deck, Attack.Attack);
                 }
             }
@@ -131,12 +131,12 @@ public class EnemyManager : MonoBehaviour
                 for (int enemy = 0; enemy < numRightEnemies; ++enemy)
                 {
                     rightEnemies[enemy].side = Side.Right;
-                    rightEnemies[enemy].deck = GenerateRandomDeck();
+                    rightEnemies[enemy].deck = (Deck)enemy;
                     rightEnemies[enemy].attack = Attack.Destroy;
 
                     GenerateOneEnemy(rightEnemies[enemy].side, rightEnemies[enemy].deck, Attack.Destroy);
 
-                    for (int i = 0; i < levelPart + 1; ++i)
+                    for (int i = 0; i < levelPart; ++i)
                         GenerateOneEnemy(rightEnemies[enemy].side, rightEnemies[enemy].deck, Attack.Attack);
                 }
             }
