@@ -20,6 +20,7 @@ public class RepairableObject : MonoBehaviour
     public AudioSource repairSFX;
 
     public GameObject OnDamageParticles;
+    public GameObject OnRepairParticles;
     void Awake()
     {
         currentRepairCooldown = cooldownBetweenRepair;
@@ -68,19 +69,25 @@ public class RepairableObject : MonoBehaviour
     }
     [DebugButton]
     public void GiveHealth()
-    {
-        repairSFX.Play(0);
-        if (!IsAtFullHealth() && currentRepairCooldown <= 0)
+    {        
+        if (!IsAtFullHealth())
         {
-            currentRepairCooldown = cooldownBetweenRepair;
-            ++currentHP;            
-            if ( currentHP > maxHP) currentHP = maxHP;
-            UpdateVisualByHealth();
-            if(currentHP >= maxHP)
-            {
-                currentHP = maxHP;
-                SetActiveFeedback(false);
+            // Play the sound and create particles always if life is not full
+            repairSFX.Play(0);
+            Instantiate(OnRepairParticles, transform.position, Quaternion.identity);
 
+            if (currentRepairCooldown <= 0)
+            {
+                currentRepairCooldown = cooldownBetweenRepair;
+                ++currentHP;
+                if (currentHP > maxHP) currentHP = maxHP;
+                UpdateVisualByHealth();
+                if (currentHP >= maxHP)
+                {
+                    currentHP = maxHP;
+                    SetActiveFeedback(false);
+
+                }
             }
         }
     }   
