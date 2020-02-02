@@ -100,12 +100,12 @@ public class PlayerController : MonoBehaviour
 
 
         CheckForDamageFeedbackUpdate();
-        if (Input.GetKeyDown(KeyCode.J) && currentPistolCD <= 0)
+        if (Input.GetKeyDown(KeyCode.K) && currentPistolCD <= 0)
         {
             currentPistolCD = gameSettings.pistolCooldown;
             weaponAnimator.SetTrigger("Shoot");
         }
-        else if (Input.GetKeyDown(KeyCode.K) && currentSwordCD <= 0)
+        else if (Input.GetKeyDown(KeyCode.J) && currentSwordCD <= 0)
         {
             currentSwordCD = gameSettings.swordCooldown;
             weaponAnimator.SetTrigger("Cut");
