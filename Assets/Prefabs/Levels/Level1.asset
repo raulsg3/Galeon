@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Level1
   m_EditorClassIdentifier: 
   levelTime: 30
-  maxEnemies: 0a0000000a0000000f000000
+  maxEnemies: 050000000500000005000000
   startWaitingTime: 3
   waitingTime:
-  - 7
-  - 7
-  - 7
+  - 8
+  - 8
+  - 8
   numDecks: 010000000100000002000000
