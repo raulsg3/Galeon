@@ -11,7 +11,7 @@ public class RepairableObject : MonoBehaviour
     public int maxHP = 3 ;
 
     private float currentRepairCooldown = 0;
-    private float cooldownBetweenRepair = 1f;
+    private float cooldownBetweenRepair = 0.5f;
     public GameObject fullHeatlthGO;
     public GameObject midHealthGO;
     public GameObject destroyedGO;
