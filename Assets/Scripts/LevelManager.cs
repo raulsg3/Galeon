@@ -29,7 +29,8 @@ public class LevelManager : MonoBehaviour
     public double levelTimeToEnd;
     public bool isGameOn;
     public float waterMovement;
-    public Vector3 waterInitialPos;
+    public Vector3 waterInitialPos = new Vector3(0, -9, 0);
+    public Vector3 waterFinalPos = new Vector3(0, 6.3f, 0);
     public GameLevelListSO levelsList; 
     public GameLevelSettingsSO currentLevelSettings; 
     #endregion
@@ -97,15 +98,19 @@ public class LevelManager : MonoBehaviour
         return playerController.bIsPlayerDead;
     }
 
+    public void WaterMovement()
+    {
+        waterMovement = (float)(boatHPSlider.GetComponent<ShipHealthSlider>().maxHealth - boatHPSlider.GetComponent<ShipHealthSlider>().currentHealth) / 100;
+        float result = Mathf.Lerp(-9f, 6.3f, waterMovement);
+        waterGrid.transform.position = new Vector3(0, result, 0);
+    }
    
     // Update is called once per frame
     void Update()
     {
         if (isGameOn)
         {
-            waterMovement = boatHPSlider.GetComponent<ShipHealthSlider>().maxHealth - boatHPSlider.GetComponent<ShipHealthSlider>().currentHealth;
-            // BUG? Esta posición se tendría que actualizar para que cuando el water movement sea 100, la posición de Water sea 0
-            waterGrid.transform.position = waterGrid.transform.position + new Vector3(0, waterMovement, 0) / 1500;
+            WaterMovement();
             levelTimeToEnd -= Time.deltaTime;
             feedbackLevel.value = (float)(currentLevelSettings.levelTime - levelTimeToEnd);
 
