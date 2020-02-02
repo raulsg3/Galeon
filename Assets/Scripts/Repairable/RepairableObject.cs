@@ -17,6 +17,8 @@ public class RepairableObject : MonoBehaviour
     public GameObject destroyedGO;
     public RepairableObjectListSO repairableObjectListSO;
 
+    public AudioSource repairSFX;
+
     public GameObject OnDamageParticles;
     void Awake()
     {
@@ -67,11 +69,12 @@ public class RepairableObject : MonoBehaviour
     [DebugButton]
     public void GiveHealth()
     {
-        if(!IsAtFullHealth() && currentRepairCooldown <= 0)
+        repairSFX.Play(0);
+        if (!IsAtFullHealth() && currentRepairCooldown <= 0)
         {
             currentRepairCooldown = cooldownBetweenRepair;
-            ++currentHP;
-            if( currentHP > maxHP) currentHP = maxHP;
+            ++currentHP;            
+            if ( currentHP > maxHP) currentHP = maxHP;
             UpdateVisualByHealth();
             if(currentHP >= maxHP)
             {

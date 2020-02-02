@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdd046b6a3483ec4bb26c0d68794bc40, type: 3}
   m_Name: Level2
   m_EditorClassIdentifier: 
-  levelTime: 30
-  maxEnemies: 050000000a0000000f000000
+  levelTime: 45
+  maxEnemies: 0f0000000f0000000f000000
   startWaitingTime: 3
   waitingTime:
   - 7
-  - 7
-  - 7
+  - 5
+  - 5
   numDecks: 010000000200000002000000
