@@ -60,4 +60,4 @@ MonoBehaviour:
   levelTimeToEnd: 0
   isGameOn: 0
   waterMovement: 0
-  waterInitialPos: {x: 0, y: -8.9, z: 20}
+  waterInitialPos: {x: 0, y: -14.7, z: 20}
