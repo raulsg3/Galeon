@@ -68,7 +68,7 @@ public class EnemyMovePlayer : MonoBehaviour
         else
         {
             //Patrullar
-            if (target == null || target.IsDestoyed())
+            if (target == null || Mathf.Abs(target.transform.position.x - transform.position.x) < player.GetComponent<PlayerData>().width)
                 GetRepairableTargetForPatrol();
 
             if (target != null)
